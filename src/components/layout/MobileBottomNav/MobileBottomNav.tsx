@@ -14,7 +14,9 @@ import {
   UserRound,
 } from "lucide-react";
 
-import type { LucideIcon } from "lucide-react";
+import type {
+  LucideIcon,
+} from "lucide-react";
 
 import { useAuthStore } from "@/store/authStore";
 import { useUIStore } from "@/store/uiStore";
@@ -73,10 +75,6 @@ export default function MobileBottomNav() {
     (state) => state.isMobileMenuOpen,
   );
 
-  const openAuthRequired = useUIStore(
-    (state) => state.openAuthRequired,
-  );
-
   const isActiveRoute = (
     href: string,
   ) => {
@@ -90,18 +88,46 @@ export default function MobileBottomNav() {
     );
   };
 
-  const navigateToProtectedRoute = (
-    href: string,
+  /* =======================================================
+     NAVIGATE
+  ======================================================= */
+
+  const navigateToRoute = (
+    item: NavigationItem,
   ) => {
-    if (!isAuthenticated) {
-      openAuthRequired(href);
+    if (
+      item.protected &&
+      !isAuthenticated
+    ) {
+      const redirect =
+        encodeURIComponent(
+          item.href,
+        );
+
+      router.push(
+        `/auth?mode=sign-in&redirect=${redirect}`,
+      );
+
       return;
     }
 
-    router.push(href);
+    router.push(item.href);
   };
 
-  if (isMobileMenuOpen) {
+  /* =======================================================
+     HIDE NAV
+  ======================================================= */
+
+  const isCaptureRoute =
+    pathname === "/capture" ||
+    pathname.startsWith(
+      "/capture/",
+    );
+
+  if (
+    isMobileMenuOpen ||
+    isCaptureRoute
+  ) {
     return null;
   }
 
@@ -111,81 +137,140 @@ export default function MobileBottomNav() {
       aria-label="Smile Bank mobile navigation"
     >
       <div className={styles.inner}>
-        {navigationItems.map((item) => {
-          const Icon = item.icon;
+        {navigationItems.map(
+          (item) => {
+            const Icon =
+              item.icon;
 
-          const isActive =
-            isActiveRoute(item.href);
+            const isActive =
+              isActiveRoute(
+                item.href,
+              );
 
-          if (item.primary) {
+            /* =============================================
+               PRIMARY DEPOSIT BUTTON
+            ============================================== */
+
+            if (item.primary) {
+              return (
+                <button
+                  key={item.href}
+                  type="button"
+                  className={`${styles.primaryItem} ${
+                    isActive
+                      ? styles.primaryItemActive
+                      : ""
+                  }`}
+                  onClick={() =>
+                    navigateToRoute(
+                      item,
+                    )
+                  }
+                  aria-label="Deposit a new smile"
+                  aria-current={
+                    isActive
+                      ? "page"
+                      : undefined
+                  }
+                >
+                  <span
+                    className={`${styles.primaryButton} ${
+                      isActive
+                        ? styles.primaryActive
+                        : ""
+                    }`}
+                  >
+                    <Icon
+                      size={25}
+                      strokeWidth={2.1}
+                      aria-hidden="true"
+                    />
+
+                    <span
+                      className={
+                        styles.primaryGlow
+                      }
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                  <span
+                    className={
+                      styles.primaryLabel
+                    }
+                  >
+                    {item.label}
+                  </span>
+                </button>
+              );
+            }
+
+            /* =============================================
+               PROTECTED ROUTES
+            ============================================== */
+
+            if (
+              item.protected &&
+              !isAuthenticated
+            ) {
+              return (
+                <button
+                  key={item.href}
+                  type="button"
+                  className={
+                    styles.item
+                  }
+                  onClick={() =>
+                    navigateToRoute(
+                      item,
+                    )
+                  }
+                  aria-label={`${item.label} requires sign in`}
+                >
+                  <span
+                    className={
+                      styles.iconWrapper
+                    }
+                  >
+                    <Icon
+                      size={20}
+                      strokeWidth={1.85}
+                      className={
+                        styles.icon
+                      }
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                  <span
+                    className={
+                      styles.label
+                    }
+                  >
+                    {item.label}
+                  </span>
+                </button>
+              );
+            }
+
+            /* =============================================
+               NORMAL ROUTES
+            ============================================== */
+
             return (
-              <button
+              <Link
                 key={item.href}
-                type="button"
-                className={`${styles.primaryItem} ${
+                href={item.href}
+                className={`${styles.item} ${
                   isActive
-                    ? styles.primaryItemActive
+                    ? styles.activeItem
                     : ""
                 }`}
-                onClick={() =>
-                  navigateToProtectedRoute(
-                    item.href,
-                  )
-                }
-                aria-label="Deposit a new smile"
                 aria-current={
                   isActive
                     ? "page"
                     : undefined
                 }
-              >
-                <span
-                  className={`${styles.primaryButton} ${
-                    isActive
-                      ? styles.primaryActive
-                      : ""
-                  }`}
-                >
-                  <Icon
-                    size={25}
-                    strokeWidth={2.1}
-                    aria-hidden="true"
-                  />
-
-                  <span
-                    className={
-                      styles.primaryGlow
-                    }
-                    aria-hidden="true"
-                  />
-                </span>
-
-                <span
-                  className={
-                    styles.primaryLabel
-                  }
-                >
-                  {item.label}
-                </span>
-              </button>
-            );
-          }
-
-          if (
-            item.protected &&
-            !isAuthenticated
-          ) {
-            return (
-              <button
-                key={item.href}
-                type="button"
-                className={styles.item}
-                onClick={() =>
-                  openAuthRequired(
-                    item.href,
-                  )
-                }
-                aria-label={`${item.label} requires sign in`}
               >
                 <span
                   className={
@@ -194,80 +279,42 @@ export default function MobileBottomNav() {
                 >
                   <Icon
                     size={20}
-                    strokeWidth={1.85}
-                    className={
-                      styles.icon
+                    strokeWidth={
+                      isActive
+                        ? 2.2
+                        : 1.85
                     }
+                    className={`${styles.icon} ${
+                      isActive
+                        ? styles.activeIcon
+                        : ""
+                    }`}
                     aria-hidden="true"
                   />
                 </span>
 
                 <span
-                  className={styles.label}
+                  className={`${styles.label} ${
+                    isActive
+                      ? styles.activeLabel
+                      : ""
+                  }`}
                 >
                   {item.label}
                 </span>
-              </button>
+
+                {isActive && (
+                  <span
+                    className={
+                      styles.activeDot
+                    }
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
             );
-          }
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`${styles.item} ${
-                isActive
-                  ? styles.activeItem
-                  : ""
-              }`}
-              aria-current={
-                isActive
-                  ? "page"
-                  : undefined
-              }
-            >
-              <span
-                className={
-                  styles.iconWrapper
-                }
-              >
-                <Icon
-                  size={20}
-                  strokeWidth={
-                    isActive
-                      ? 2.2
-                      : 1.85
-                  }
-                  className={`${styles.icon} ${
-                    isActive
-                      ? styles.activeIcon
-                      : ""
-                  }`}
-                  aria-hidden="true"
-                />
-              </span>
-
-              <span
-                className={`${styles.label} ${
-                  isActive
-                    ? styles.activeLabel
-                    : ""
-                }`}
-              >
-                {item.label}
-              </span>
-
-              {isActive && (
-                <span
-                  className={
-                    styles.activeDot
-                  }
-                  aria-hidden="true"
-                />
-              )}
-            </Link>
-          );
-        })}
+          },
+        )}
       </div>
     </nav>
   );
