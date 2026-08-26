@@ -10,32 +10,33 @@
   display: flex;
 
   width: 100%;
-  min-height: 46px;
+  min-height: 42px;
 
   align-items: center;
   justify-content: center;
 
-  gap: 9px;
+  gap: 8px;
 
-  padding: 0 14px;
+  padding: 0 12px;
 
   color: var(--smile-text-strong);
 
   background:
-    rgba(255, 255, 255, 0.96);
+    rgba(255, 255, 255, 0.92);
 
   border:
     1px solid
-    var(--smile-border);
+    rgba(220, 233, 230, 0.95);
 
-  border-radius: 12px;
+  border-radius: 10px;
 
   box-shadow:
-    0 4px 12px
-    rgba(7, 63, 60, 0.035);
+    0 3px 10px
+    rgba(7, 63, 60, 0.025);
 
-  font-size: 9.5px;
-  font-weight: 720;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
 
   transition:
     background var(--transition-fast),
@@ -51,8 +52,8 @@
     var(--smile-border-strong);
 
   box-shadow:
-    0 7px 16px
-    rgba(7, 63, 60, 0.06);
+    0 5px 14px
+    rgba(7, 63, 60, 0.045);
 
   transform: translateY(-1px);
 }
@@ -68,8 +69,8 @@
 .googleIcon {
   display: inline-flex;
 
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 
   flex-shrink: 0;
 
@@ -90,14 +91,14 @@
 
 @media (max-width: 640px) {
   .googleButton {
-    min-height: 44px;
+    min-height: 41px;
 
-    font-size: 9px;
+    font-size: 8.7px;
   }
 
   .googleIcon {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -107,9 +108,11 @@
 
 @media (max-width: 390px) {
   .googleButton {
-    min-height: 42px;
+    min-height: 40px;
 
-    font-size: 8.5px;
+    padding: 0 10px;
+
+    font-size: 8.3px;
   }
 }
 

@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  ArrowLeft,
-  Sparkles,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import {
   useRouter,
   useSearchParams,
@@ -33,27 +30,23 @@ interface AuthPanelProps {
 const modeContent: Record<
   AuthMode,
   {
-    eyebrow: string;
     title: string;
     description: string;
   }
 > = {
   "sign-in": {
-    eyebrow: "Welcome back",
     title: "Sign in to Smile Bank",
     description:
       "Access your private Smile Vault and continue preserving the moments that matter.",
   },
 
   "sign-up": {
-    eyebrow: "Create your vault",
     title: "Open your Smile Bank",
     description:
       "Create your private account and start preserving meaningful smiles in one secure place.",
   },
 
   "forgot-password": {
-    eyebrow: "Account recovery",
     title: "Reset your password",
     description:
       "Enter your email and we’ll help you securely regain access to your Smile Bank.",
@@ -65,7 +58,8 @@ export default function AuthPanel({
   redirectPath,
 }: AuthPanelProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams =
+    useSearchParams();
 
   const [mode, setMode] =
     useState<AuthMode>(initialMode);
@@ -103,7 +97,8 @@ export default function AuthPanel({
     );
   };
 
-  const content = modeContent[mode];
+  const content =
+    modeContent[mode];
 
   const isForgotPassword =
     mode === "forgot-password";
@@ -111,7 +106,7 @@ export default function AuthPanel({
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
-        {isForgotPassword ? (
+        {isForgotPassword && (
           <button
             type="button"
             className={styles.backButton}
@@ -129,27 +124,15 @@ export default function AuthPanel({
               Back to sign in
             </span>
           </button>
-        ) : (
-          <div className={styles.eyebrow}>
-            <span
-              className={
-                styles.eyebrowIcon
-              }
-            >
-              <Sparkles
-                size={14}
-                strokeWidth={2}
-                aria-hidden="true"
-              />
-            </span>
-
-            <span>
-              {content.eyebrow}
-            </span>
-          </div>
         )}
 
-        <h2 className={styles.title}>
+        <h2
+          className={`${styles.title} ${
+            isForgotPassword
+              ? styles.titleWithBack
+              : ""
+          }`}
+        >
           {content.title}
         </h2>
 
@@ -176,7 +159,9 @@ export default function AuthPanel({
             </div>
 
             <LoginForm
-              redirectPath={redirectPath}
+              redirectPath={
+                redirectPath
+              }
               onForgotPassword={() =>
                 updateMode(
                   "forgot-password",
@@ -206,7 +191,9 @@ export default function AuthPanel({
             </div>
 
             <RegisterForm
-              redirectPath={redirectPath}
+              redirectPath={
+                redirectPath
+              }
               onSignIn={() =>
                 updateMode("sign-in")
               }

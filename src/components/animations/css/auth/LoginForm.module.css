@@ -10,9 +10,9 @@
   display: flex;
   flex-direction: column;
 
-  gap: 7px;
+  gap: 6px;
 
-  margin-top: 13px;
+  margin-top: 11px;
 }
 
 .field:first-child {
@@ -30,8 +30,8 @@
 .label {
   color: var(--smile-text);
 
-  font-size: 9px;
-  font-weight: 760;
+  font-size: 8.5px;
+  font-weight: 740;
   line-height: 1;
 }
 
@@ -45,19 +45,16 @@
   display: flex;
   align-items: center;
 
-  min-height: 46px;
+  min-height: 43px;
 
-  background: #ffffff;
+  background:
+    rgba(255, 255, 255, 0.94);
 
   border:
     1px solid
     var(--smile-border);
 
-  border-radius: 12px;
-
-  box-shadow:
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.9);
+  border-radius: 11px;
 
   transition:
     border-color var(--transition-fast),
@@ -65,15 +62,20 @@
     background var(--transition-fast);
 }
 
-.inputWrapper:focus-within {
+.inputWrapper:hover {
   border-color:
-    rgba(15, 122, 114, 0.38);
+    var(--smile-border-strong);
+}
+
+.inputWrapper:focus-within {
+  background: #ffffff;
+
+  border-color:
+    rgba(15, 122, 114, 0.4);
 
   box-shadow:
     0 0 0 3px
-    rgba(15, 122, 114, 0.075),
-    0 6px 16px
-    rgba(7, 63, 60, 0.045);
+    rgba(15, 122, 114, 0.07);
 }
 
 /* =========================================================
@@ -83,7 +85,7 @@
 .inputIcon {
   position: absolute;
 
-  left: 12px;
+  left: 11px;
 
   display: inline-flex;
 
@@ -111,13 +113,13 @@
   width: 100%;
   min-width: 0;
 
-  height: 44px;
+  height: 41px;
 
   padding:
     0
-    12px
+    11px
     0
-    40px;
+    38px;
 
   color: var(--smile-text-strong);
 
@@ -128,20 +130,20 @@
 
   font: inherit;
 
-  font-size: 10.5px;
-  font-weight: 560;
+  font-size: 10px;
+  font-weight: 540;
 
   appearance: none;
   -webkit-appearance: none;
 }
 
 .passwordInput {
-  padding-right: 43px;
+  padding-right: 41px;
 }
 
 .input::placeholder {
   color:
-    rgba(124, 145, 142, 0.68);
+    rgba(124, 145, 142, 0.62);
 
   font-weight: 500;
 }
@@ -153,12 +155,12 @@
 .passwordToggle {
   position: absolute;
 
-  right: 6px;
+  right: 5px;
 
   display: inline-flex;
 
-  width: 33px;
-  height: 33px;
+  width: 31px;
+  height: 31px;
 
   align-items: center;
   justify-content: center;
@@ -170,7 +172,7 @@
   background: transparent;
 
   border: 0;
-  border-radius: 9px;
+  border-radius: 8px;
 
   transition:
     color var(--transition-fast),
@@ -186,7 +188,7 @@
 }
 
 .passwordToggle:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 /* =========================================================
@@ -202,8 +204,8 @@
 
   border: 0;
 
-  font-size: 8px;
-  font-weight: 760;
+  font-size: 7.8px;
+  font-weight: 740;
 
   transition:
     color var(--transition-fast);
@@ -224,11 +226,11 @@
   display: flex;
   align-items: center;
 
-  margin-top: 11px;
+  margin-top: 9px;
 }
 
 /* =========================================================
-   REMEMBER CHECKBOX
+   REMEMBER
 ========================================================= */
 
 .remember {
@@ -243,8 +245,8 @@
 
   color: var(--smile-text-secondary);
 
-  font-size: 8px;
-  font-weight: 600;
+  font-size: 7.8px;
+  font-weight: 580;
 
   user-select: none;
 }
@@ -267,8 +269,8 @@
 
   display: inline-flex;
 
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 
   flex-shrink: 0;
 
@@ -292,8 +294,8 @@
 .customCheckbox::after {
   content: "";
 
-  width: 7px;
-  height: 4px;
+  width: 6px;
+  height: 3px;
 
   border: solid #ffffff;
 
@@ -324,10 +326,6 @@
 
   border-color:
     var(--smile-green);
-
-  box-shadow:
-    0 4px 10px
-    rgba(15, 122, 114, 0.16);
 }
 
 .checkboxInput:checked
@@ -339,7 +337,7 @@
 + .customCheckbox {
   outline:
     3px solid
-    rgba(15, 122, 114, 0.11);
+    rgba(15, 122, 114, 0.1);
 
   outline-offset: 2px;
 }
@@ -359,14 +357,14 @@
     auto;
 
   width: 100%;
-  min-height: 48px;
+  min-height: 45px;
 
   align-items: center;
 
-  gap: 9px;
+  gap: 8px;
 
-  margin-top: 15px;
-  padding: 0 13px;
+  margin-top: 13px;
+  padding: 0 11px;
 
   overflow: hidden;
 
@@ -375,61 +373,35 @@
   background:
     linear-gradient(
       135deg,
-      #ffdf80 0%,
+      #ffe18a 0%,
       var(--smile-yellow) 55%,
       #efb93c 100%
     );
 
   border:
     1px solid
-    rgba(239, 185, 60, 0.62);
+    rgba(239, 185, 60, 0.56);
 
-  border-radius: 13px;
+  border-radius: 11px;
 
   box-shadow:
-    0 10px 22px
-    rgba(247, 198, 83, 0.2);
+    0 8px 18px
+    rgba(247, 198, 83, 0.18);
 
-  font-size: 10.5px;
-  font-weight: 820;
+  font-size: 10px;
+  font-weight: 800;
 
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
-.submitButton::before {
-  content: "";
-
-  position: absolute;
-
-  top: -90%;
-  left: -45%;
-
-  width: 38px;
-  height: 230%;
-
-  background:
-    rgba(255, 255, 255, 0.25);
-
-  transform: rotate(24deg);
-
-  transition:
-    left var(--transition-slow);
-
-  pointer-events: none;
-}
-
 .submitButton:hover {
   transform: translateY(-1px);
 
   box-shadow:
-    0 13px 28px
-    rgba(247, 198, 83, 0.27);
-}
-
-.submitButton:hover::before {
-  left: 120%;
+    0 10px 22px
+    rgba(247, 198, 83, 0.23);
 }
 
 .submitButton:active {
@@ -438,12 +410,12 @@
 
 .submitIcon {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
   display: inline-flex;
 
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 
   align-items: center;
   justify-content: center;
@@ -459,25 +431,21 @@
       var(--smile-green-dark)
     );
 
-  border-radius: 9px;
-
-  box-shadow:
-    0 5px 11px
-    rgba(15, 122, 114, 0.17);
+  border-radius: 8px;
 }
 
 .submitButton > span:nth-child(2) {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
   justify-self: center;
 }
 
 .submitArrow {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 
-  font-size: 16px;
+  font-size: 15px;
 
   transition:
     transform var(--transition-fast);
@@ -485,11 +453,11 @@
 
 .submitButton:hover
 .submitArrow {
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 /* =========================================================
-   CREATE ACCOUNT SWITCH
+   CREATE ACCOUNT
 ========================================================= */
 
 .createAccount {
@@ -501,11 +469,11 @@
 
   gap: 5px;
 
-  margin-top: 13px;
+  margin-top: 11px;
 
   color: var(--smile-text-muted);
 
-  font-size: 8px;
+  font-size: 7.8px;
   line-height: 1.4;
 }
 
@@ -518,8 +486,8 @@
 
   border: 0;
 
-  font-size: 8px;
-  font-weight: 800;
+  font-size: 7.8px;
+  font-weight: 780;
 
   transition:
     color var(--transition-fast);
@@ -538,31 +506,31 @@
 
 @media (max-width: 640px) {
   .field {
-    margin-top: 11px;
-  }
-
-  .inputWrapper {
-    min-height: 44px;
-  }
-
-  .input {
-    height: 42px;
-
-    font-size: 10px;
-  }
-
-  .options {
     margin-top: 10px;
   }
 
-  .submitButton {
-    min-height: 46px;
+  .inputWrapper {
+    min-height: 42px;
+  }
 
-    margin-top: 13px;
+  .input {
+    height: 40px;
+
+    font-size: 9.5px;
+  }
+
+  .options {
+    margin-top: 8px;
+  }
+
+  .submitButton {
+    min-height: 44px;
+
+    margin-top: 12px;
   }
 
   .createAccount {
-    margin-top: 12px;
+    margin-top: 10px;
   }
 }
 
@@ -576,24 +544,24 @@
   }
 
   .forgotButton {
-    font-size: 7.5px;
+    font-size: 7.2px;
   }
 
   .input {
-    font-size: 9.5px;
+    font-size: 9px;
   }
 
   .remember {
-    font-size: 7.5px;
+    font-size: 7.3px;
   }
 
   .submitButton {
-    font-size: 10px;
+    font-size: 9.5px;
   }
 
   .createAccount,
   .createAccount button {
-    font-size: 7.5px;
+    font-size: 7.3px;
   }
 }
 
@@ -609,7 +577,6 @@
   .customCheckbox,
   .customCheckbox::after,
   .submitButton,
-  .submitButton::before,
   .submitArrow,
   .createAccount button {
     transition: none;

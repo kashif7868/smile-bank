@@ -6,55 +6,53 @@
 
   overflow: hidden;
 
-  padding: 15px;
+  padding: 22px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.985) 0%,
-      rgba(249, 252, 251, 0.985) 100%
+      rgba(252, 254, 253, 0.985) 0%,
+      rgba(247, 250, 249, 0.985) 100%
     );
 
   border:
     1px solid
-    rgba(220, 233, 230, 0.9);
+    rgba(220, 233, 230, 0.82);
 
-  border-radius: 24px;
+  border-radius: 22px;
 
   box-shadow:
-    0 24px 60px
-    rgba(3, 24, 22, 0.2),
-    0 8px 22px
-    rgba(3, 24, 22, 0.08),
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.95);
+    0 20px 48px
+    rgba(3, 24, 22, 0.16),
+    0 6px 18px
+    rgba(3, 24, 22, 0.06);
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* =========================================================
-   GLOW
+   SUBTLE INNER GLOW
 ========================================================= */
 
 .glow {
   position: absolute;
 
-  top: -120px;
+  top: -125px;
   right: -105px;
 
   z-index: -1;
 
-  width: 260px;
-  height: 260px;
+  width: 240px;
+  height: 240px;
 
   border-radius: 50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(247, 198, 83, 0.14) 0%,
-      rgba(247, 198, 83, 0.04) 45%,
+      rgba(247, 198, 83, 0.09) 0%,
+      rgba(247, 198, 83, 0.025) 44%,
       transparent 72%
     );
 
@@ -62,164 +60,15 @@
 }
 
 /* =========================================================
-   HEADER
+   TABLET
 ========================================================= */
 
-.cardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@media (max-width: 900px) {
+  .card {
+    padding: 20px;
 
-  gap: 12px;
-
-  min-height: 34px;
-
-  padding:
-    0
-    1px
-    12px;
-
-  border-bottom:
-    1px solid
-    var(--smile-border-soft);
-}
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-.securityBadge {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  color: var(--smile-text-secondary);
-
-  font-size: 8px;
-  font-weight: 730;
-  line-height: 1;
-}
-
-.securityIcon {
-  display: inline-flex;
-
-  width: 25px;
-  height: 25px;
-
-  flex-shrink: 0;
-
-  align-items: center;
-  justify-content: center;
-
-  color: var(--smile-green);
-
-  background:
-    var(--smile-green-soft);
-
-  border:
-    1px solid
-    var(--smile-border-soft);
-
-  border-radius: 8px;
-}
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-.status {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  min-height: 25px;
-
-  padding: 0 8px;
-
-  color: var(--smile-green-dark);
-
-  background:
-    rgba(233, 247, 244, 0.72);
-
-  border:
-    1px solid
-    rgba(15, 122, 114, 0.1);
-
-  border-radius:
-    var(--radius-pill);
-
-  font-size: 7px;
-  font-weight: 800;
-}
-
-.statusDot {
-  width: 5px;
-  height: 5px;
-
-  flex-shrink: 0;
-
-  background: var(--smile-green);
-
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(15, 122, 114, 0.08);
-}
-
-/* =========================================================
-   PANEL
-========================================================= */
-
-.panelWrapper {
-  position: relative;
-
-  padding:
-    18px
-    1px
-    14px;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.cardFooter {
-  display: flex;
-  align-items: flex-start;
-
-  gap: 7px;
-
-  padding: 9px 10px;
-
-  color: var(--smile-text-muted);
-
-  background:
-    rgba(242, 250, 248, 0.72);
-
-  border:
-    1px solid
-    var(--smile-border-soft);
-
-  border-radius: 11px;
-}
-
-.cardFooter svg {
-  flex-shrink: 0;
-
-  margin-top: 1px;
-
-  color: var(--smile-green);
-}
-
-.cardFooter p {
-  margin: 0;
-
-  font-size: 7px;
-  font-weight: 540;
-  line-height: 1.45;
+    border-radius: 20px;
+  }
 }
 
 /* =========================================================
@@ -228,30 +77,23 @@
 
 @media (max-width: 640px) {
   .card {
-    padding: 13px;
+    padding: 17px;
 
-    border-radius: 21px;
+    border-radius: 18px;
 
     box-shadow:
-      0 20px 50px
-      rgba(3, 24, 22, 0.16),
-      0 6px 18px
-      rgba(3, 24, 22, 0.07);
+      0 16px 38px
+      rgba(3, 24, 22, 0.14),
+      0 5px 14px
+      rgba(3, 24, 22, 0.05);
   }
 
-  .cardHeader {
-    padding-bottom: 10px;
-  }
+  .glow {
+    top: -100px;
+    right: -85px;
 
-  .panelWrapper {
-    padding:
-      16px
-      0
-      12px;
-  }
-
-  .cardFooter {
-    padding: 8px 9px;
+    width: 200px;
+    height: 200px;
   }
 }
 
@@ -261,29 +103,8 @@
 
 @media (max-width: 390px) {
   .card {
-    padding: 11px;
+    padding: 15px;
 
-    border-radius: 19px;
-  }
-
-  .securityBadge {
-    font-size: 7px;
-  }
-
-  .securityIcon {
-    width: 23px;
-    height: 23px;
-  }
-
-  .status {
-    min-height: 23px;
-
-    padding: 0 7px;
-
-    font-size: 6.5px;
-  }
-
-  .cardFooter p {
-    font-size: 6.5px;
+    border-radius: 17px;
   }
 }

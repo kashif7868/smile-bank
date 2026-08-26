@@ -61,7 +61,7 @@ export default function AuthPage({
 
       <div className={styles.container}>
         {/* ============================================
-            LEFT BRAND CONTENT
+            LEFT CONTENT
         ============================================= */}
 
         <section
@@ -108,85 +108,87 @@ export default function AuthPage({
             <p className={styles.description}>
               Capture meaningful moments, let AI
               help find your clearest natural smile,
-              and stay in complete control of what
-              remains private or becomes public.
+              and stay in control of what remains
+              private or becomes public.
             </p>
 
-            <div className={styles.featureList}>
-              <div className={styles.feature}>
+            {/* ========================================
+                TRUST ROW
+            ========================================= */}
+
+            <div className={styles.trustRow}>
+              <div className={styles.trustItem}>
                 <span
-                  className={styles.featureIcon}
+                  className={styles.trustIcon}
+                  aria-hidden="true"
                 >
                   <LockKeyhole
-                    size={18}
+                    size={16}
                     strokeWidth={2}
-                    aria-hidden="true"
                   />
                 </span>
 
                 <span
-                  className={
-                    styles.featureContent
-                  }
+                  className={styles.trustContent}
                 >
                   <strong>
                     Private by default
                   </strong>
 
                   <small>
-                    Your memories remain yours.
+                    Your memories stay yours
                   </small>
                 </span>
               </div>
 
-              <div className={styles.feature}>
+              <div className={styles.trustDivider} />
+
+              <div className={styles.trustItem}>
                 <span
-                  className={styles.featureIcon}
+                  className={styles.trustIcon}
+                  aria-hidden="true"
                 >
                   <Camera
-                    size={18}
+                    size={16}
                     strokeWidth={2}
-                    aria-hidden="true"
                   />
                 </span>
 
                 <span
-                  className={
-                    styles.featureContent
-                  }
+                  className={styles.trustContent}
                 >
                   <strong>
                     AI-assisted capture
                   </strong>
 
                   <small>
-                    Find your clearest natural shot.
+                    Find your best natural shot
                   </small>
                 </span>
               </div>
 
-              <div className={styles.feature}>
+              <div className={styles.trustDivider} />
+
+              <div className={styles.trustItem}>
                 <span
-                  className={styles.featureIcon}
+                  className={styles.trustIcon}
+                  aria-hidden="true"
                 >
                   <ShieldCheck
-                    size={18}
+                    size={16}
                     strokeWidth={2}
-                    aria-hidden="true"
                   />
                 </span>
 
                 <span
-                  className={
-                    styles.featureContent
-                  }
+                  className={styles.trustContent}
                 >
                   <strong>
-                    Consent-first sharing
+                    You control sharing
                   </strong>
 
                   <small>
-                    You decide what becomes public.
+                    Public only when you choose
                   </small>
                 </span>
               </div>

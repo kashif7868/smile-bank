@@ -10,9 +10,9 @@
   display: flex;
   flex-direction: column;
 
-  gap: 7px;
+  gap: 6px;
 
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .field:first-child {
@@ -22,8 +22,8 @@
 .label {
   color: var(--smile-text);
 
-  font-size: 9px;
-  font-weight: 760;
+  font-size: 8.5px;
+  font-weight: 740;
   line-height: 1;
 }
 
@@ -37,15 +37,16 @@
   display: flex;
   align-items: center;
 
-  min-height: 46px;
+  min-height: 43px;
 
-  background: #ffffff;
+  background:
+    rgba(255, 255, 255, 0.94);
 
   border:
     1px solid
     var(--smile-border);
 
-  border-radius: 12px;
+  border-radius: 11px;
 
   transition:
     border-color var(--transition-fast),
@@ -53,35 +54,44 @@
     background var(--transition-fast);
 }
 
-.inputWrapper:focus-within {
+.inputWrapper:hover {
   border-color:
-    rgba(15, 122, 114, 0.38);
+    var(--smile-border-strong);
+}
+
+.inputWrapper:focus-within {
+  background: #ffffff;
+
+  border-color:
+    rgba(15, 122, 114, 0.4);
 
   box-shadow:
     0 0 0 3px
-    rgba(15, 122, 114, 0.075),
-    0 6px 16px
-    rgba(7, 63, 60, 0.045);
+    rgba(15, 122, 114, 0.07);
 }
 
 .inputWrapperError {
   border-color:
-    rgba(180, 90, 85, 0.42);
+    rgba(177, 82, 78, 0.4);
 }
 
 .inputWrapperError:focus-within {
   border-color:
-    rgba(180, 90, 85, 0.52);
+    rgba(177, 82, 78, 0.5);
 
   box-shadow:
     0 0 0 3px
-    rgba(180, 90, 85, 0.07);
+    rgba(177, 82, 78, 0.065);
 }
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
 
 .inputIcon {
   position: absolute;
 
-  left: 12px;
+  left: 11px;
 
   display: inline-flex;
 
@@ -103,20 +113,24 @@
 
 .inputWrapperError
 .inputIcon {
-  color: #a95b56;
+  color: #a75652;
 }
+
+/* =========================================================
+   INPUT
+========================================================= */
 
 .input {
   width: 100%;
   min-width: 0;
 
-  height: 44px;
+  height: 41px;
 
   padding:
     0
-    12px
+    11px
     0
-    40px;
+    38px;
 
   color: var(--smile-text-strong);
 
@@ -127,20 +141,20 @@
 
   font: inherit;
 
-  font-size: 10.5px;
-  font-weight: 560;
+  font-size: 10px;
+  font-weight: 540;
 
   appearance: none;
   -webkit-appearance: none;
 }
 
 .passwordInput {
-  padding-right: 43px;
+  padding-right: 41px;
 }
 
 .input::placeholder {
   color:
-    rgba(124, 145, 142, 0.68);
+    rgba(124, 145, 142, 0.62);
 
   font-weight: 500;
 }
@@ -152,12 +166,12 @@
 .passwordToggle {
   position: absolute;
 
-  right: 6px;
+  right: 5px;
 
   display: inline-flex;
 
-  width: 33px;
-  height: 33px;
+  width: 31px;
+  height: 31px;
 
   align-items: center;
   justify-content: center;
@@ -169,7 +183,7 @@
   background: transparent;
 
   border: 0;
-  border-radius: 9px;
+  border-radius: 8px;
 
   transition:
     color var(--transition-fast),
@@ -185,7 +199,7 @@
 }
 
 .passwordToggle:active {
-  transform: scale(0.95);
+  transform: scale(0.96);
 }
 
 /* =========================================================
@@ -195,10 +209,10 @@
 .fieldError {
   margin: 0;
 
-  color: #a95b56;
+  color: #a75652;
 
-  font-size: 7px;
-  font-weight: 650;
+  font-size: 6.8px;
+  font-weight: 640;
   line-height: 1.4;
 }
 
@@ -212,9 +226,9 @@
   display: flex;
   align-items: flex-start;
 
-  gap: 8px;
+  gap: 7px;
 
-  margin-top: 14px;
+  margin-top: 12px;
 
   cursor: pointer;
 }
@@ -237,8 +251,8 @@
 
   display: inline-flex;
 
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
 
   flex-shrink: 0;
 
@@ -264,8 +278,8 @@
 .customCheckbox::after {
   content: "";
 
-  width: 7px;
-  height: 4px;
+  width: 6px;
+  height: 3px;
 
   border: solid #ffffff;
 
@@ -296,10 +310,6 @@
 
   border-color:
     var(--smile-green);
-
-  box-shadow:
-    0 4px 10px
-    rgba(15, 122, 114, 0.16);
 }
 
 .checkboxInput:checked
@@ -311,7 +321,7 @@
 + .customCheckbox {
   outline:
     3px solid
-    rgba(15, 122, 114, 0.11);
+    rgba(15, 122, 114, 0.1);
 
   outline-offset: 2px;
 }
@@ -319,14 +329,14 @@
 .consentText {
   color: var(--smile-text-secondary);
 
-  font-size: 7.5px;
-  line-height: 1.55;
+  font-size: 7.2px;
+  line-height: 1.5;
 }
 
 .consentText a {
   color: var(--smile-green-dark);
 
-  font-weight: 760;
+  font-weight: 740;
 }
 
 .consentText a:hover {
@@ -349,39 +359,37 @@
     auto;
 
   width: 100%;
-  min-height: 48px;
+  min-height: 45px;
 
   align-items: center;
 
-  gap: 9px;
+  gap: 8px;
 
-  margin-top: 15px;
-  padding: 0 13px;
-
-  overflow: hidden;
+  margin-top: 13px;
+  padding: 0 11px;
 
   color: var(--smile-green-deep);
 
   background:
     linear-gradient(
       135deg,
-      #ffdf80 0%,
+      #ffe18a 0%,
       var(--smile-yellow) 55%,
       #efb93c 100%
     );
 
   border:
     1px solid
-    rgba(239, 185, 60, 0.62);
+    rgba(239, 185, 60, 0.56);
 
-  border-radius: 13px;
+  border-radius: 11px;
 
   box-shadow:
-    0 10px 22px
-    rgba(247, 198, 83, 0.2);
+    0 8px 18px
+    rgba(247, 198, 83, 0.18);
 
-  font-size: 10.5px;
-  font-weight: 820;
+  font-size: 10px;
+  font-weight: 800;
 
   transition:
     transform var(--transition-fast),
@@ -393,8 +401,8 @@
   transform: translateY(-1px);
 
   box-shadow:
-    0 13px 28px
-    rgba(247, 198, 83, 0.27);
+    0 10px 22px
+    rgba(247, 198, 83, 0.23);
 }
 
 .submitButton:active:not(:disabled) {
@@ -404,19 +412,16 @@
 .submitButton:disabled {
   cursor: not-allowed;
 
-  opacity: 0.46;
+  opacity: 0.48;
 
   box-shadow: none;
 }
 
 .submitIcon {
-  position: relative;
-  z-index: 2;
-
   display: inline-flex;
 
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
 
   align-items: center;
   justify-content: center;
@@ -432,25 +437,15 @@
       var(--smile-green-dark)
     );
 
-  border-radius: 9px;
-
-  box-shadow:
-    0 5px 11px
-    rgba(15, 122, 114, 0.17);
+  border-radius: 8px;
 }
 
 .submitButton > span:nth-child(2) {
-  position: relative;
-  z-index: 2;
-
   justify-self: center;
 }
 
 .submitArrow {
-  position: relative;
-  z-index: 2;
-
-  font-size: 16px;
+  font-size: 15px;
 
   transition:
     transform var(--transition-fast);
@@ -458,7 +453,7 @@
 
 .submitButton:hover:not(:disabled)
 .submitArrow {
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 /* =========================================================
@@ -474,11 +469,11 @@
 
   gap: 5px;
 
-  margin-top: 13px;
+  margin-top: 11px;
 
   color: var(--smile-text-muted);
 
-  font-size: 8px;
+  font-size: 7.8px;
   line-height: 1.4;
 }
 
@@ -491,8 +486,8 @@
 
   border: 0;
 
-  font-size: 8px;
-  font-weight: 800;
+  font-size: 7.8px;
+  font-weight: 780;
 
   transition:
     color var(--transition-fast);
@@ -511,31 +506,31 @@
 
 @media (max-width: 640px) {
   .field {
-    margin-top: 10px;
+    margin-top: 9px;
   }
 
   .inputWrapper {
-    min-height: 44px;
+    min-height: 42px;
   }
 
   .input {
-    height: 42px;
+    height: 40px;
 
-    font-size: 10px;
+    font-size: 9.5px;
   }
 
   .consent {
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   .submitButton {
-    min-height: 46px;
+    min-height: 44px;
 
-    margin-top: 13px;
+    margin-top: 12px;
   }
 
   .signInSwitch {
-    margin-top: 12px;
+    margin-top: 10px;
   }
 }
 
@@ -549,24 +544,24 @@
   }
 
   .input {
-    font-size: 9.5px;
+    font-size: 9px;
   }
 
   .fieldError {
-    font-size: 6.5px;
+    font-size: 6.4px;
   }
 
   .consentText {
-    font-size: 7px;
+    font-size: 6.8px;
   }
 
   .submitButton {
-    font-size: 10px;
+    font-size: 9.5px;
   }
 
   .signInSwitch,
   .signInSwitch button {
-    font-size: 7.5px;
+    font-size: 7.3px;
   }
 }
 
