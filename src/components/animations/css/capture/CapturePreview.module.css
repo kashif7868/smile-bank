@@ -1,0 +1,237 @@
+.preview {
+  width: 100%;
+}
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.media {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #071d1b 0%,
+      #0a2926 100%
+    );
+
+  border-radius: 22px;
+
+  isolation: isolate;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* =========================================================
+   READY BADGE
+========================================================= */
+
+.readyBadge {
+  position: absolute;
+
+  top: 14px;
+  left: 14px;
+
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  min-height: 29px;
+
+  padding:
+    0
+    9px;
+
+  color: #ffffff;
+
+  background:
+    rgba(4, 28, 26, 0.62);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius:
+    var(--radius-pill);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 7.4px;
+  font-weight: 720;
+}
+
+.readyBadge svg {
+  flex-shrink: 0;
+
+  color: #8be2ae;
+}
+
+/* =========================================================
+   QUALITY BADGE
+========================================================= */
+
+.qualityBadge {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  min-height: 29px;
+
+  padding:
+    0
+    9px;
+
+  color: #ffffff;
+
+  background:
+    rgba(4, 28, 26, 0.62);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius:
+    var(--radius-pill);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 7.4px;
+  font-weight: 720;
+}
+
+.qualityBadge svg {
+  flex-shrink: 0;
+
+  color:
+    var(--smile-yellow);
+}
+
+/* =========================================================
+   META
+========================================================= */
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  color:
+    var(--smile-text-muted);
+
+  font-size: 7px;
+  font-weight: 590;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   META DIVIDER
+========================================================= */
+
+.metaDivider {
+  width: 1px;
+  height: 12px;
+
+  background:
+    var(--smile-border);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .media {
+    aspect-ratio: 4 / 3;
+
+    border-radius: 20px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .media {
+    aspect-ratio: 3 / 4;
+
+    border-radius: 18px;
+  }
+
+  .readyBadge,
+  .qualityBadge {
+    top: 10px;
+
+    min-height: 27px;
+
+    padding:
+      0
+      8px;
+
+    font-size: 7px;
+  }
+
+  .readyBadge {
+    left: 10px;
+  }
+
+  .qualityBadge {
+    right: 10px;
+  }
+
+  .meta {
+    gap: 6px;
+
+    margin-top: 8px;
+
+    font-size: 6.6px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .media {
+    border-radius: 17px;
+  }
+
+  .readyBadge,
+  .qualityBadge {
+    min-height: 25px;
+
+    font-size: 6.6px;
+  }
+
+  .meta {
+    font-size: 6.3px;
+  }
+}
