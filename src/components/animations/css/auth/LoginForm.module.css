@@ -12,7 +12,7 @@
 
   gap: 7px;
 
-  margin-top: 14px;
+  margin-top: 13px;
 }
 
 .field:first-child {
@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
 
-  min-height: 48px;
+  min-height: 46px;
 
   background: #ffffff;
 
@@ -53,7 +53,7 @@
     1px solid
     var(--smile-border);
 
-  border-radius: 13px;
+  border-radius: 12px;
 
   box-shadow:
     inset 0 1px 0
@@ -66,16 +66,14 @@
 }
 
 .inputWrapper:focus-within {
-  background: #ffffff;
-
   border-color:
     rgba(15, 122, 114, 0.38);
 
   box-shadow:
     0 0 0 3px
-    rgba(15, 122, 114, 0.08),
-    0 7px 18px
-    rgba(7, 63, 60, 0.05);
+    rgba(15, 122, 114, 0.075),
+    0 6px 16px
+    rgba(7, 63, 60, 0.045);
 }
 
 /* =========================================================
@@ -85,7 +83,7 @@
 .inputIcon {
   position: absolute;
 
-  left: 13px;
+  left: 12px;
 
   display: inline-flex;
 
@@ -113,13 +111,13 @@
   width: 100%;
   min-width: 0;
 
-  height: 46px;
+  height: 44px;
 
   padding:
     0
-    13px
+    12px
     0
-    41px;
+    40px;
 
   color: var(--smile-text-strong);
 
@@ -130,7 +128,7 @@
 
   font: inherit;
 
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 560;
 
   appearance: none;
@@ -138,12 +136,12 @@
 }
 
 .passwordInput {
-  padding-right: 44px;
+  padding-right: 43px;
 }
 
 .input::placeholder {
   color:
-    rgba(124, 145, 142, 0.72);
+    rgba(124, 145, 142, 0.68);
 
   font-weight: 500;
 }
@@ -155,12 +153,12 @@
 .passwordToggle {
   position: absolute;
 
-  right: 7px;
+  right: 6px;
 
   display: inline-flex;
 
-  width: 34px;
-  height: 34px;
+  width: 33px;
+  height: 33px;
 
   align-items: center;
   justify-content: center;
@@ -188,7 +186,7 @@
 }
 
 .passwordToggle:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
 /* =========================================================
@@ -208,8 +206,7 @@
   font-weight: 760;
 
   transition:
-    color var(--transition-fast),
-    opacity var(--transition-fast);
+    color var(--transition-fast);
 }
 
 .forgotButton:hover {
@@ -226,11 +223,8 @@
 .options {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
-  gap: 12px;
-
-  margin-top: 13px;
+  margin-top: 11px;
 }
 
 /* =========================================================
@@ -301,8 +295,7 @@
   width: 7px;
   height: 4px;
 
-  border:
-    solid #ffffff;
+  border: solid #ffffff;
 
   border-width:
     0
@@ -334,7 +327,7 @@
 
   box-shadow:
     0 4px 10px
-    rgba(15, 122, 114, 0.18);
+    rgba(15, 122, 114, 0.16);
 }
 
 .checkboxInput:checked
@@ -346,35 +339,13 @@
 + .customCheckbox {
   outline:
     3px solid
-    rgba(15, 122, 114, 0.12);
+    rgba(15, 122, 114, 0.11);
 
   outline-offset: 2px;
 }
 
 /* =========================================================
-   SECURE TEXT
-========================================================= */
-
-.secureText {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 4px;
-
-  color: var(--smile-text-muted);
-
-  font-size: 7px;
-  font-weight: 650;
-
-  white-space: nowrap;
-}
-
-.secureText svg {
-  color: var(--smile-green);
-}
-
-/* =========================================================
-   SUBMIT BUTTON
+   SUBMIT
 ========================================================= */
 
 .submitButton {
@@ -388,16 +359,14 @@
     auto;
 
   width: 100%;
-  min-height: 50px;
+  min-height: 48px;
 
   align-items: center;
 
   gap: 9px;
 
-  margin-top: 17px;
-  padding:
-    0
-    14px;
+  margin-top: 15px;
+  padding: 0 13px;
 
   overflow: hidden;
 
@@ -413,15 +382,15 @@
 
   border:
     1px solid
-    rgba(239, 185, 60, 0.65);
+    rgba(239, 185, 60, 0.62);
 
-  border-radius: 14px;
+  border-radius: 13px;
 
   box-shadow:
-    0 11px 24px
-    rgba(247, 198, 83, 0.22);
+    0 10px 22px
+    rgba(247, 198, 83, 0.2);
 
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 820;
 
   transition:
@@ -437,11 +406,11 @@
   top: -90%;
   left: -45%;
 
-  width: 40px;
+  width: 38px;
   height: 230%;
 
   background:
-    rgba(255, 255, 255, 0.28);
+    rgba(255, 255, 255, 0.25);
 
   transform: rotate(24deg);
 
@@ -452,11 +421,11 @@
 }
 
 .submitButton:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 
   box-shadow:
-    0 15px 32px
-    rgba(247, 198, 83, 0.3);
+    0 13px 28px
+    rgba(247, 198, 83, 0.27);
 }
 
 .submitButton:hover::before {
@@ -473,8 +442,8 @@
 
   display: inline-flex;
 
-  width: 31px;
-  height: 31px;
+  width: 30px;
+  height: 30px;
 
   align-items: center;
   justify-content: center;
@@ -490,11 +459,11 @@
       var(--smile-green-dark)
     );
 
-  border-radius: 10px;
+  border-radius: 9px;
 
   box-shadow:
-    0 5px 12px
-    rgba(15, 122, 114, 0.18);
+    0 5px 11px
+    rgba(15, 122, 114, 0.17);
 }
 
 .submitButton > span:nth-child(2) {
@@ -508,7 +477,7 @@
   position: relative;
   z-index: 2;
 
-  font-size: 17px;
+  font-size: 16px;
 
   transition:
     transform var(--transition-fast);
@@ -520,12 +489,11 @@
 }
 
 /* =========================================================
-   CREATE ACCOUNT
+   CREATE ACCOUNT SWITCH
 ========================================================= */
 
 .createAccount {
-  display: none;
-
+  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -533,11 +501,12 @@
 
   gap: 5px;
 
-  margin-top: 14px;
+  margin-top: 13px;
 
   color: var(--smile-text-muted);
 
   font-size: 8px;
+  line-height: 1.4;
 }
 
 .createAccount button {
@@ -551,9 +520,14 @@
 
   font-size: 8px;
   font-weight: 800;
+
+  transition:
+    color var(--transition-fast);
 }
 
 .createAccount button:hover {
+  color: var(--smile-green);
+
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -564,27 +538,31 @@
 
 @media (max-width: 640px) {
   .field {
-    margin-top: 12px;
+    margin-top: 11px;
   }
 
   .inputWrapper {
-    min-height: 46px;
+    min-height: 44px;
   }
 
   .input {
-    height: 44px;
+    height: 42px;
 
     font-size: 10px;
   }
 
   .options {
-    margin-top: 11px;
+    margin-top: 10px;
   }
 
   .submitButton {
-    min-height: 48px;
+    min-height: 46px;
 
-    margin-top: 15px;
+    margin-top: 13px;
+  }
+
+  .createAccount {
+    margin-top: 12px;
   }
 }
 
@@ -609,12 +587,13 @@
     font-size: 7.5px;
   }
 
-  .secureText {
-    font-size: 6.5px;
-  }
-
   .submitButton {
     font-size: 10px;
+  }
+
+  .createAccount,
+  .createAccount button {
+    font-size: 7.5px;
   }
 }
 
@@ -631,7 +610,8 @@
   .customCheckbox::after,
   .submitButton,
   .submitButton::before,
-  .submitArrow {
+  .submitArrow,
+  .createAccount button {
     transition: none;
   }
 

@@ -2,19 +2,16 @@
 
 import Link from "next/link";
 import {
-  Check,
   Eye,
   EyeOff,
   LockKeyhole,
   Mail,
-  UserRound,
   UserPlus,
+  UserRound,
 } from "lucide-react";
-import {
-  FormEvent,
-  useMemo,
-  useState,
-} from "react";
+import { useState } from "react";
+
+import type { FormEvent } from "react";
 
 import styles from "@/components/animations/css/auth/RegisterForm.module.css";
 
@@ -28,8 +25,7 @@ export default function RegisterForm({
   onSignIn,
 }: RegisterFormProps) {
   const [name, setName] = useState("");
-  const [email, setEmail] =
-    useState("");
+  const [email, setEmail] = useState("");
 
   const [password, setPassword] =
     useState("");
@@ -49,49 +45,32 @@ export default function RegisterForm({
     setShowConfirmPassword,
   ] = useState(false);
 
-  const [acceptedTerms, setAcceptedTerms] =
-    useState(false);
+  const [
+    acceptedTerms,
+    setAcceptedTerms,
+  ] = useState(false);
+
+  const hasConfirmPassword =
+    confirmPassword.length > 0;
 
   const passwordsMatch =
-    password.length > 0 &&
-    confirmPassword.length > 0 &&
+    !hasConfirmPassword ||
     password === confirmPassword;
 
-  const passwordStrength = useMemo(() => {
-    if (!password) {
-      return 0;
-    }
-
-    let score = 0;
-
-    if (password.length >= 8) {
-      score += 1;
-    }
-
-    if (/[A-Z]/.test(password)) {
-      score += 1;
-    }
-
-    if (/[0-9]/.test(password)) {
-      score += 1;
-    }
-
-    if (/[^A-Za-z0-9]/.test(password)) {
-      score += 1;
-    }
-
-    return score;
-  }, [password]);
+  const canSubmit =
+    name.trim().length > 0 &&
+    email.trim().length > 0 &&
+    password.length >= 8 &&
+    confirmPassword.length >= 8 &&
+    password === confirmPassword &&
+    acceptedTerms;
 
   const handleSubmit = (
     event: FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
 
-    if (
-      !acceptedTerms ||
-      password !== confirmPassword
-    ) {
+    if (!canSubmit) {
       return;
     }
 
@@ -99,7 +78,7 @@ export default function RegisterForm({
      * Registration API integration
      * will be added here.
      *
-     * After successful registration:
+     * Successful registration:
      * redirectPath
      *   ? router.push(redirectPath)
      *   : router.push("/vault")
@@ -113,9 +92,9 @@ export default function RegisterForm({
       className={styles.form}
       onSubmit={handleSubmit}
     >
-      {/* ===============================================
-          NAME
-      ================================================ */}
+      {/* ============================================
+          FULL NAME
+      ============================================= */}
 
       <div className={styles.field}>
         <label
@@ -152,9 +131,9 @@ export default function RegisterForm({
         </div>
       </div>
 
-      {/* ===============================================
+      {/* ============================================
           EMAIL
-      ================================================ */}
+      ============================================= */}
 
       <div className={styles.field}>
         <label
@@ -192,9 +171,9 @@ export default function RegisterForm({
         </div>
       </div>
 
-      {/* ===============================================
+      {/* ============================================
           PASSWORD
-      ================================================ */}
+      ============================================= */}
 
       <div className={styles.field}>
         <label
@@ -225,12 +204,10 @@ export default function RegisterForm({
             }
             value={password}
             onChange={(event) =>
-              setPassword(
-                event.target.value,
-              )
+              setPassword(event.target.value)
             }
             className={`${styles.input} ${styles.passwordInput}`}
-            placeholder="Create a strong password"
+            placeholder="Minimum 8 characters"
             autoComplete="new-password"
             minLength={8}
             required
@@ -238,9 +215,7 @@ export default function RegisterForm({
 
           <button
             type="button"
-            className={
-              styles.passwordToggle
-            }
+            className={styles.passwordToggle}
             onClick={() =>
               setShowPassword(
                 (current) => !current,
@@ -268,52 +243,11 @@ export default function RegisterForm({
             )}
           </button>
         </div>
-
-        {password.length > 0 && (
-          <div
-            className={styles.strength}
-            aria-label="Password strength"
-          >
-            <div
-              className={
-                styles.strengthBars
-              }
-            >
-              {[1, 2, 3, 4].map(
-                (level) => (
-                  <span
-                    key={level}
-                    className={`${styles.strengthBar} ${
-                      passwordStrength >=
-                      level
-                        ? styles.strengthBarActive
-                        : ""
-                    }`}
-                  />
-                ),
-              )}
-            </div>
-
-            <span
-              className={
-                styles.strengthLabel
-              }
-            >
-              {passwordStrength <= 1
-                ? "Weak"
-                : passwordStrength === 2
-                  ? "Good"
-                  : passwordStrength === 3
-                    ? "Strong"
-                    : "Excellent"}
-            </span>
-          </div>
-        )}
       </div>
 
-      {/* ===============================================
+      {/* ============================================
           CONFIRM PASSWORD
-      ================================================ */}
+      ============================================= */}
 
       <div className={styles.field}>
         <label
@@ -323,7 +257,14 @@ export default function RegisterForm({
           Confirm password
         </label>
 
-        <div className={styles.inputWrapper}>
+        <div
+          className={`${styles.inputWrapper} ${
+            hasConfirmPassword &&
+            !passwordsMatch
+              ? styles.inputWrapperError
+              : ""
+          }`}
+        >
           <span
             className={styles.inputIcon}
             aria-hidden="true"
@@ -352,14 +293,16 @@ export default function RegisterForm({
             placeholder="Enter password again"
             autoComplete="new-password"
             minLength={8}
+            aria-invalid={
+              hasConfirmPassword &&
+              !passwordsMatch
+            }
             required
           />
 
           <button
             type="button"
-            className={
-              styles.passwordToggle
-            }
+            className={styles.passwordToggle}
             onClick={() =>
               setShowConfirmPassword(
                 (current) => !current,
@@ -390,44 +333,22 @@ export default function RegisterForm({
           </button>
         </div>
 
-        {confirmPassword.length > 0 && (
-          <div
-            className={`${styles.matchStatus} ${
-              passwordsMatch
-                ? styles.matchSuccess
-                : styles.matchError
-            }`}
-          >
-            {passwordsMatch ? (
-              <>
-                <Check
-                  size={12}
-                  strokeWidth={2.4}
-                  aria-hidden="true"
-                />
-                Passwords match
-              </>
-            ) : (
-              <>
-                <LockKeyhole
-                  size={12}
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
-                Passwords do not match
-              </>
-            )}
-          </div>
-        )}
+        {hasConfirmPassword &&
+          !passwordsMatch && (
+            <p
+              className={styles.fieldError}
+              role="alert"
+            >
+              Passwords do not match.
+            </p>
+          )}
       </div>
 
-      {/* ===============================================
+      {/* ============================================
           CONSENT
-      ================================================ */}
+      ============================================= */}
 
-      <label
-        className={styles.consent}
-      >
+      <label className={styles.consent}>
         <input
           type="checkbox"
           checked={acceptedTerms}
@@ -436,22 +357,16 @@ export default function RegisterForm({
               event.target.checked,
             )
           }
-          className={
-            styles.checkboxInput
-          }
+          className={styles.checkboxInput}
           required
         />
 
         <span
-          className={
-            styles.customCheckbox
-          }
+          className={styles.customCheckbox}
           aria-hidden="true"
         />
 
-        <span
-          className={styles.consentText}
-        >
+        <span className={styles.consentText}>
           I agree to the{" "}
           <Link href="/terms">
             Terms
@@ -468,23 +383,16 @@ export default function RegisterForm({
         </span>
       </label>
 
-      {/* ===============================================
-          SUBMIT
-      ================================================ */}
+      {/* ============================================
+          CREATE ACCOUNT
+      ============================================= */}
 
       <button
         type="submit"
         className={styles.submitButton}
-        disabled={
-          !acceptedTerms ||
-          !passwordsMatch
-        }
+        disabled={!canSubmit}
       >
-        <span
-          className={
-            styles.submitIcon
-          }
-        >
+        <span className={styles.submitIcon}>
           <UserPlus
             size={18}
             strokeWidth={2}
@@ -493,22 +401,20 @@ export default function RegisterForm({
         </span>
 
         <span>
-          Create my Smile Bank
+          Create account
         </span>
 
         <span
-          className={
-            styles.submitArrow
-          }
+          className={styles.submitArrow}
           aria-hidden="true"
         >
           →
         </span>
       </button>
 
-      {/* ===============================================
-          ACCOUNT SWITCH
-      ================================================ */}
+      {/* ============================================
+          SIGN IN SWITCH
+      ============================================= */}
 
       <div className={styles.signInSwitch}>
         <span>

@@ -2,15 +2,16 @@
 
 import {
   ArrowLeft,
-  LogIn,
   Sparkles,
-  UserPlus,
 } from "lucide-react";
 import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import LoginForm from "./LoginForm";
@@ -69,6 +70,10 @@ export default function AuthPanel({
   const [mode, setMode] =
     useState<AuthMode>(initialMode);
 
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
+
   const updateMode = (
     nextMode: AuthMode,
   ) => {
@@ -86,6 +91,8 @@ export default function AuthPanel({
         "redirect",
         redirectPath,
       );
+    } else {
+      params.delete("redirect");
     }
 
     router.replace(
@@ -103,10 +110,6 @@ export default function AuthPanel({
 
   return (
     <div className={styles.panel}>
-      {/* ===============================================
-          HEADER
-      ================================================ */}
-
       <div className={styles.header}>
         {isForgotPassword ? (
           <button
@@ -150,82 +153,10 @@ export default function AuthPanel({
           {content.title}
         </h2>
 
-        <p
-          className={
-            styles.description
-          }
-        >
+        <p className={styles.description}>
           {content.description}
         </p>
       </div>
-
-      {/* ===============================================
-          SIGN IN / SIGN UP SWITCH
-      ================================================ */}
-
-      {!isForgotPassword && (
-        <div
-          className={styles.modeSwitch}
-          role="tablist"
-          aria-label="Account access options"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={
-              mode === "sign-in"
-            }
-            className={`${styles.modeButton} ${
-              mode === "sign-in"
-                ? styles.modeButtonActive
-                : ""
-            }`}
-            onClick={() =>
-              updateMode("sign-in")
-            }
-          >
-            <LogIn
-              size={15}
-              strokeWidth={1.9}
-              aria-hidden="true"
-            />
-
-            <span>
-              Sign in
-            </span>
-          </button>
-
-          <button
-            type="button"
-            role="tab"
-            aria-selected={
-              mode === "sign-up"
-            }
-            className={`${styles.modeButton} ${
-              mode === "sign-up"
-                ? styles.modeButtonActive
-                : ""
-            }`}
-            onClick={() =>
-              updateMode("sign-up")
-            }
-          >
-            <UserPlus
-              size={15}
-              strokeWidth={1.9}
-              aria-hidden="true"
-            />
-
-            <span>
-              Sign up
-            </span>
-          </button>
-        </div>
-      )}
-
-      {/* ===============================================
-          AUTH CONTENT
-      ================================================ */}
 
       <div className={styles.formArea}>
         {mode === "sign-in" && (
@@ -234,9 +165,7 @@ export default function AuthPanel({
               mode="sign-in"
             />
 
-            <div
-              className={styles.divider}
-            >
+            <div className={styles.divider}>
               <span />
 
               <small>
@@ -247,9 +176,7 @@ export default function AuthPanel({
             </div>
 
             <LoginForm
-              redirectPath={
-                redirectPath
-              }
+              redirectPath={redirectPath}
               onForgotPassword={() =>
                 updateMode(
                   "forgot-password",
@@ -268,9 +195,7 @@ export default function AuthPanel({
               mode="sign-up"
             />
 
-            <div
-              className={styles.divider}
-            >
+            <div className={styles.divider}>
               <span />
 
               <small>
@@ -281,9 +206,7 @@ export default function AuthPanel({
             </div>
 
             <RegisterForm
-              redirectPath={
-                redirectPath
-              }
+              redirectPath={redirectPath}
               onSignIn={() =>
                 updateMode("sign-in")
               }
@@ -293,46 +216,9 @@ export default function AuthPanel({
 
         {mode ===
           "forgot-password" && (
-          <ForgotPasswordForm
-            onBackToSignIn={() =>
-              updateMode("sign-in")
-            }
-          />
+          <ForgotPasswordForm />
         )}
       </div>
-
-      {/* ===============================================
-          BOTTOM SWITCH
-      ================================================ */}
-
-      {!isForgotPassword && (
-        <div
-          className={
-            styles.bottomSwitch
-          }
-        >
-          <span>
-            {mode === "sign-in"
-              ? "New to Smile Bank?"
-              : "Already have an account?"}
-          </span>
-
-          <button
-            type="button"
-            onClick={() =>
-              updateMode(
-                mode === "sign-in"
-                  ? "sign-up"
-                  : "sign-in",
-              )
-            }
-          >
-            {mode === "sign-in"
-              ? "Create account"
-              : "Sign in"}
-          </button>
-        </div>
-      )}
     </div>
   );
 }

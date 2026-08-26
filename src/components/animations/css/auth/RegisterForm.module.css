@@ -12,7 +12,7 @@
 
   gap: 7px;
 
-  margin-top: 13px;
+  margin-top: 12px;
 }
 
 .field:first-child {
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
 
-  min-height: 47px;
+  min-height: 46px;
 
   background: #ffffff;
 
@@ -45,7 +45,7 @@
     1px solid
     var(--smile-border);
 
-  border-radius: 13px;
+  border-radius: 12px;
 
   transition:
     border-color var(--transition-fast),
@@ -59,15 +59,29 @@
 
   box-shadow:
     0 0 0 3px
-    rgba(15, 122, 114, 0.08),
-    0 7px 18px
-    rgba(7, 63, 60, 0.05);
+    rgba(15, 122, 114, 0.075),
+    0 6px 16px
+    rgba(7, 63, 60, 0.045);
+}
+
+.inputWrapperError {
+  border-color:
+    rgba(180, 90, 85, 0.42);
+}
+
+.inputWrapperError:focus-within {
+  border-color:
+    rgba(180, 90, 85, 0.52);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(180, 90, 85, 0.07);
 }
 
 .inputIcon {
   position: absolute;
 
-  left: 13px;
+  left: 12px;
 
   display: inline-flex;
 
@@ -87,17 +101,22 @@
   color: var(--smile-green);
 }
 
+.inputWrapperError
+.inputIcon {
+  color: #a95b56;
+}
+
 .input {
   width: 100%;
   min-width: 0;
 
-  height: 45px;
+  height: 44px;
 
   padding:
     0
-    13px
+    12px
     0
-    41px;
+    40px;
 
   color: var(--smile-text-strong);
 
@@ -116,12 +135,14 @@
 }
 
 .passwordInput {
-  padding-right: 44px;
+  padding-right: 43px;
 }
 
 .input::placeholder {
   color:
-    rgba(124, 145, 142, 0.7);
+    rgba(124, 145, 142, 0.68);
+
+  font-weight: 500;
 }
 
 /* =========================================================
@@ -131,12 +152,12 @@
 .passwordToggle {
   position: absolute;
 
-  right: 7px;
+  right: 6px;
 
   display: inline-flex;
 
-  width: 34px;
-  height: 34px;
+  width: 33px;
+  height: 33px;
 
   align-items: center;
   justify-content: center;
@@ -164,89 +185,21 @@
 }
 
 .passwordToggle:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
 /* =========================================================
-   PASSWORD STRENGTH
+   FIELD ERROR
 ========================================================= */
 
-.strength {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.fieldError {
+  margin: 0;
 
-  gap: 10px;
-
-  margin-top: 1px;
-}
-
-.strengthBars {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 4px;
-
-  width: 100%;
-}
-
-.strengthBar {
-  height: 4px;
-
-  background:
-    var(--smile-border-soft);
-
-  border-radius:
-    var(--radius-pill);
-
-  transition:
-    background var(--transition-fast);
-}
-
-.strengthBarActive {
-  background:
-    linear-gradient(
-      90deg,
-      var(--smile-yellow),
-      var(--smile-green)
-    );
-}
-
-.strengthLabel {
-  min-width: 52px;
-
-  color: var(--smile-text-muted);
+  color: #a95b56;
 
   font-size: 7px;
-  font-weight: 700;
-
-  text-align: right;
-}
-
-/* =========================================================
-   MATCH STATUS
-========================================================= */
-
-.matchStatus {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 5px;
-
-  width: fit-content;
-
-  font-size: 7.5px;
-  font-weight: 680;
-}
-
-.matchSuccess {
-  color: var(--smile-green);
-}
-
-.matchError {
-  color: #b45a55;
+  font-weight: 650;
+  line-height: 1.4;
 }
 
 /* =========================================================
@@ -261,7 +214,7 @@
 
   gap: 8px;
 
-  margin-top: 15px;
+  margin-top: 14px;
 
   cursor: pointer;
 }
@@ -284,8 +237,8 @@
 
   display: inline-flex;
 
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 
   flex-shrink: 0;
 
@@ -314,8 +267,7 @@
   width: 7px;
   height: 4px;
 
-  border:
-    solid #ffffff;
+  border: solid #ffffff;
 
   border-width:
     0
@@ -347,7 +299,7 @@
 
   box-shadow:
     0 4px 10px
-    rgba(15, 122, 114, 0.18);
+    rgba(15, 122, 114, 0.16);
 }
 
 .checkboxInput:checked
@@ -359,7 +311,7 @@
 + .customCheckbox {
   outline:
     3px solid
-    rgba(15, 122, 114, 0.12);
+    rgba(15, 122, 114, 0.11);
 
   outline-offset: 2px;
 }
@@ -397,14 +349,14 @@
     auto;
 
   width: 100%;
-  min-height: 50px;
+  min-height: 48px;
 
   align-items: center;
 
   gap: 9px;
 
-  margin-top: 16px;
-  padding: 0 14px;
+  margin-top: 15px;
+  padding: 0 13px;
 
   overflow: hidden;
 
@@ -420,13 +372,13 @@
 
   border:
     1px solid
-    rgba(239, 185, 60, 0.65);
+    rgba(239, 185, 60, 0.62);
 
-  border-radius: 14px;
+  border-radius: 13px;
 
   box-shadow:
-    0 11px 24px
-    rgba(247, 198, 83, 0.22);
+    0 10px 22px
+    rgba(247, 198, 83, 0.2);
 
   font-size: 10.5px;
   font-weight: 820;
@@ -438,11 +390,11 @@
 }
 
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 
   box-shadow:
-    0 15px 32px
-    rgba(247, 198, 83, 0.3);
+    0 13px 28px
+    rgba(247, 198, 83, 0.27);
 }
 
 .submitButton:active:not(:disabled) {
@@ -452,16 +404,19 @@
 .submitButton:disabled {
   cursor: not-allowed;
 
-  opacity: 0.48;
+  opacity: 0.46;
 
   box-shadow: none;
 }
 
 .submitIcon {
+  position: relative;
+  z-index: 2;
+
   display: inline-flex;
 
-  width: 31px;
-  height: 31px;
+  width: 30px;
+  height: 30px;
 
   align-items: center;
   justify-content: center;
@@ -477,19 +432,25 @@
       var(--smile-green-dark)
     );
 
-  border-radius: 10px;
+  border-radius: 9px;
 
   box-shadow:
-    0 5px 12px
-    rgba(15, 122, 114, 0.18);
+    0 5px 11px
+    rgba(15, 122, 114, 0.17);
 }
 
 .submitButton > span:nth-child(2) {
+  position: relative;
+  z-index: 2;
+
   justify-self: center;
 }
 
 .submitArrow {
-  font-size: 17px;
+  position: relative;
+  z-index: 2;
+
+  font-size: 16px;
 
   transition:
     transform var(--transition-fast);
@@ -518,6 +479,7 @@
   color: var(--smile-text-muted);
 
   font-size: 8px;
+  line-height: 1.4;
 }
 
 .signInSwitch button {
@@ -531,9 +493,14 @@
 
   font-size: 8px;
   font-weight: 800;
+
+  transition:
+    color var(--transition-fast);
 }
 
 .signInSwitch button:hover {
+  color: var(--smile-green);
+
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -544,27 +511,31 @@
 
 @media (max-width: 640px) {
   .field {
-    margin-top: 11px;
+    margin-top: 10px;
   }
 
   .inputWrapper {
-    min-height: 45px;
+    min-height: 44px;
   }
 
   .input {
-    height: 43px;
+    height: 42px;
 
     font-size: 10px;
   }
 
   .consent {
-    margin-top: 13px;
+    margin-top: 12px;
   }
 
   .submitButton {
-    min-height: 48px;
+    min-height: 46px;
 
-    margin-top: 14px;
+    margin-top: 13px;
+  }
+
+  .signInSwitch {
+    margin-top: 12px;
   }
 }
 
@@ -581,12 +552,21 @@
     font-size: 9.5px;
   }
 
+  .fieldError {
+    font-size: 6.5px;
+  }
+
   .consentText {
     font-size: 7px;
   }
 
   .submitButton {
-    font-size: 9.5px;
+    font-size: 10px;
+  }
+
+  .signInSwitch,
+  .signInSwitch button {
+    font-size: 7.5px;
   }
 }
 
@@ -598,11 +578,11 @@
   .inputWrapper,
   .inputIcon,
   .passwordToggle,
-  .strengthBar,
   .customCheckbox,
   .customCheckbox::after,
   .submitButton,
-  .submitArrow {
+  .submitArrow,
+  .signInSwitch button {
     transition: none;
   }
 

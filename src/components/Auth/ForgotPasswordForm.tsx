@@ -1,26 +1,17 @@
 "use client";
 
 import {
-  ArrowLeft,
   CheckCircle2,
   Mail,
   Send,
-  ShieldCheck,
 } from "lucide-react";
-import {
-  FormEvent,
-  useState,
-} from "react";
+import { useState } from "react";
+
+import type { FormEvent } from "react";
 
 import styles from "@/components/animations/css/auth/ForgotPasswordForm.module.css";
 
-interface ForgotPasswordFormProps {
-  onBackToSignIn: () => void;
-}
-
-export default function ForgotPasswordForm({
-  onBackToSignIn,
-}: ForgotPasswordFormProps) {
+export default function ForgotPasswordForm() {
   const [email, setEmail] =
     useState("");
 
@@ -33,11 +24,12 @@ export default function ForgotPasswordForm({
     event.preventDefault();
 
     /*
-     * Forgot-password API integration
+     * Password reset API integration
      * will be added here.
      *
-     * Example future flow:
-     * await requestPasswordReset(email);
+     * Always show the same success state
+     * whether or not an account exists
+     * for this email.
      */
 
     setIsSubmitted(true);
@@ -45,69 +37,33 @@ export default function ForgotPasswordForm({
 
   if (isSubmitted) {
     return (
-      <div
-        className={styles.success}
-        role="status"
-        aria-live="polite"
-      >
-        <span
+      <div className={styles.success}>
+        <div
           className={styles.successIcon}
+          aria-hidden="true"
         >
           <CheckCircle2
-            size={24}
+            size={22}
             strokeWidth={2}
-            aria-hidden="true"
           />
-        </span>
+        </div>
 
-        <div
-          className={styles.successContent}
-        >
-          <strong>
+        <div className={styles.successContent}>
+          <h3>
             Check your email
-          </strong>
+          </h3>
 
           <p>
             If an account exists for{" "}
-            <span>{email}</span>, we&apos;ll
-            send password reset instructions.
+            <strong>{email}</strong>,
+            we&apos;ll send password reset
+            instructions.
           </p>
         </div>
 
-        <div
-          className={styles.successNote}
-        >
-          <ShieldCheck
-            size={14}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
-
-          <span>
-            For your privacy, we don&apos;t confirm
-            whether an email is registered.
-          </span>
-        </div>
-
         <button
           type="button"
-          className={styles.backButton}
-          onClick={onBackToSignIn}
-        >
-          <ArrowLeft
-            size={15}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
-
-          <span>
-            Back to sign in
-          </span>
-        </button>
-
-        <button
-          type="button"
-          className={styles.resendButton}
+          className={styles.tryAgainButton}
           onClick={() =>
             setIsSubmitted(false)
           }
@@ -131,9 +87,7 @@ export default function ForgotPasswordForm({
           Email address
         </label>
 
-        <div
-          className={styles.inputWrapper}
-        >
+        <div className={styles.inputWrapper}>
           <span
             className={styles.inputIcon}
             aria-hidden="true"
@@ -150,7 +104,9 @@ export default function ForgotPasswordForm({
             type="email"
             value={email}
             onChange={(event) =>
-              setEmail(event.target.value)
+              setEmail(
+                event.target.value,
+              )
             }
             className={styles.input}
             placeholder="you@example.com"
@@ -161,27 +117,11 @@ export default function ForgotPasswordForm({
         </div>
       </div>
 
-      <div className={styles.infoNote}>
-        <ShieldCheck
-          size={15}
-          strokeWidth={2}
-          aria-hidden="true"
-        />
-
-        <p>
-          We&apos;ll send a secure reset link
-          if this email is connected to a
-          Smile Bank account.
-        </p>
-      </div>
-
       <button
         type="submit"
         className={styles.submitButton}
       >
-        <span
-          className={styles.submitIcon}
-        >
+        <span className={styles.submitIcon}>
           <Send
             size={17}
             strokeWidth={2}
@@ -198,22 +138,6 @@ export default function ForgotPasswordForm({
           aria-hidden="true"
         >
           →
-        </span>
-      </button>
-
-      <button
-        type="button"
-        className={styles.secondaryBackButton}
-        onClick={onBackToSignIn}
-      >
-        <ArrowLeft
-          size={14}
-          strokeWidth={2}
-          aria-hidden="true"
-        />
-
-        <span>
-          Back to sign in
         </span>
       </button>
     </form>

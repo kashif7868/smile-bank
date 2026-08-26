@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+/* =========================================================
+   EYEBROW
+========================================================= */
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -41,6 +45,10 @@
   border-radius:
     var(--radius-pill);
 
+  box-shadow:
+    0 5px 14px
+    rgba(7, 63, 60, 0.04);
+
   font-size: 8px;
   font-weight: 800;
   line-height: 1;
@@ -59,60 +67,81 @@
   color: var(--smile-green);
 }
 
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
 .backButton {
   display: inline-flex;
   align-items: center;
 
   gap: 6px;
 
-  min-height: 30px;
+  min-height: 31px;
 
   padding: 0 9px;
 
   color: var(--smile-text-secondary);
 
-  background: transparent;
+  background:
+    var(--smile-green-soft);
 
-  border: 0;
+  border:
+    1px solid
+    var(--smile-border-soft);
+
   border-radius: 9px;
 
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 720;
 
   transition:
     color var(--transition-fast),
     background var(--transition-fast),
+    border-color var(--transition-fast),
     transform var(--transition-fast);
 }
 
 .backButton:hover {
   color: var(--smile-green-dark);
 
-  background:
-    var(--smile-green-soft);
+  background: #ffffff;
+
+  border-color:
+    rgba(15, 122, 114, 0.18);
 
   transform: translateX(-2px);
 }
 
+/* =========================================================
+   TITLE
+========================================================= */
+
 .title {
+  max-width: 420px;
+
   margin: 15px 0 0;
 
   color: var(--smile-text-strong);
 
   font-size:
     clamp(
-      26px,
+      28px,
       3vw,
-      34px
+      36px
     );
 
   font-weight: 850;
-  line-height: 1.08;
+  line-height: 1.06;
 
   letter-spacing: -0.045em;
 
   text-wrap: balance;
 }
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .description {
   max-width: 390px;
@@ -121,89 +150,10 @@
 
   color: var(--smile-text-secondary);
 
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.6;
 
   text-wrap: pretty;
-}
-
-/* =========================================================
-   MODE SWITCH
-========================================================= */
-
-.modeSwitch {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 4px;
-
-  margin-top: 20px;
-  padding: 4px;
-
-  background:
-    var(--smile-surface-muted);
-
-  border:
-    1px solid
-    var(--smile-border-soft);
-
-  border-radius: 13px;
-}
-
-.modeButton {
-  display: inline-flex;
-
-  min-height: 40px;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  padding: 0 12px;
-
-  color: var(--smile-text-muted);
-
-  background: transparent;
-
-  border: 1px solid transparent;
-  border-radius: 10px;
-
-  font-size: 10px;
-  font-weight: 760;
-
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
-}
-
-.modeButton:hover {
-  color: var(--smile-text);
-
-  background:
-    rgba(255, 255, 255, 0.7);
-}
-
-.modeButtonActive {
-  color: var(--smile-green-dark);
-
-  background: #ffffff;
-
-  border-color:
-    rgba(15, 122, 114, 0.08);
-
-  box-shadow:
-    0 5px 14px
-    rgba(7, 63, 60, 0.06);
-}
-
-.modeButton:active {
-  transform: scale(0.985);
 }
 
 /* =========================================================
@@ -211,7 +161,9 @@
 ========================================================= */
 
 .formArea {
-  margin-top: 18px;
+  width: 100%;
+
+  margin-top: 22px;
 }
 
 /* =========================================================
@@ -230,7 +182,7 @@
 
   gap: 10px;
 
-  margin: 16px 0;
+  margin: 17px 0;
 }
 
 .divider > span {
@@ -263,54 +215,23 @@
   font-weight: 650;
   line-height: 1;
 
-  letter-spacing: 0.03em;
+  letter-spacing: 0.025em;
 
   white-space: nowrap;
 }
 
 /* =========================================================
-   BOTTOM SWITCH
+   TABLET
 ========================================================= */
 
-.bottomSwitch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media (max-width: 900px) {
+  .title {
+    font-size: 32px;
+  }
 
-  flex-wrap: wrap;
-
-  gap: 5px;
-
-  margin-top: 17px;
-
-  color: var(--smile-text-muted);
-
-  font-size: 9px;
-  line-height: 1.4;
-}
-
-.bottomSwitch button {
-  padding: 0;
-
-  color: var(--smile-green-dark);
-
-  background: transparent;
-
-  border: 0;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  transition:
-    color var(--transition-fast),
-    opacity var(--transition-fast);
-}
-
-.bottomSwitch button:hover {
-  color: var(--smile-green);
-
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  .description {
+    max-width: 410px;
+  }
 }
 
 /* =========================================================
@@ -318,6 +239,12 @@
 ========================================================= */
 
 @media (max-width: 640px) {
+  .eyebrow {
+    min-height: 28px;
+
+    font-size: 7px;
+  }
+
   .title {
     margin-top: 13px;
 
@@ -327,28 +254,16 @@
   .description {
     margin-top: 8px;
 
-    font-size: 10px;
+    font-size: 9.5px;
     line-height: 1.55;
   }
 
-  .modeSwitch {
-    margin-top: 17px;
-  }
-
-  .modeButton {
-    min-height: 39px;
-  }
-
   .formArea {
-    margin-top: 16px;
+    margin-top: 18px;
   }
 
   .divider {
     margin: 14px 0;
-  }
-
-  .bottomSwitch {
-    margin-top: 15px;
   }
 }
 
@@ -357,25 +272,11 @@
 ========================================================= */
 
 @media (max-width: 390px) {
-  .eyebrow {
-    min-height: 28px;
-
-    font-size: 7px;
-  }
-
   .title {
     font-size: 25px;
   }
 
   .description {
-    font-size: 9.5px;
-  }
-
-  .modeButton {
-    min-height: 37px;
-
-    padding: 0 8px;
-
     font-size: 9px;
   }
 
@@ -393,14 +294,11 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .backButton,
-  .modeButton,
-  .bottomSwitch button {
+  .backButton {
     transition: none;
   }
 
-  .backButton:hover,
-  .modeButton:active {
+  .backButton:hover {
     transform: none;
   }
 }

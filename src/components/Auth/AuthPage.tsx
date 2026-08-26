@@ -16,9 +16,14 @@ interface AuthPageProps {
   redirectPath?: string;
 }
 
+type AuthMode =
+  | "sign-in"
+  | "sign-up"
+  | "forgot-password";
+
 function resolveAuthMode(
   mode?: string,
-): "sign-in" | "sign-up" | "forgot-password" {
+): AuthMode {
   if (mode === "sign-up") {
     return "sign-up";
   }
@@ -55,19 +60,19 @@ export default function AuthPage({
       />
 
       <div className={styles.container}>
-        {/* ================================================
-            BRAND / TRUST SIDE
-        ================================================= */}
+        {/* ============================================
+            LEFT BRAND CONTENT
+        ============================================= */}
 
         <section
-          className={styles.brandPanel}
-          aria-label="About Smile Bank"
+          className={styles.brandSide}
+          aria-label="Smile Bank"
         >
           <div className={styles.brandTop}>
             <Link
               href="/"
               className={styles.backLink}
-              aria-label="Return to Smile Bank home"
+              aria-label="Back to Smile Bank home"
             >
               <ArrowLeft
                 size={15}
@@ -76,114 +81,6 @@ export default function AuthPage({
               />
 
               <span>Back home</span>
-            </Link>
-
-            <Link
-              href="/"
-              className={styles.logo}
-              aria-label="Smile Bank home"
-            >
-              <span
-                className={styles.logoIcon}
-                aria-hidden="true"
-              >
-                <svg
-                  viewBox="0 0 48 48"
-                  className={styles.logoSvg}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                >
-                  <defs>
-                    <linearGradient
-                      id="authSmileGradient"
-                      x1="8"
-                      y1="5"
-                      x2="40"
-                      y2="43"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop
-                        offset="0"
-                        stopColor="#FFE08A"
-                      />
-
-                      <stop
-                        offset="0.55"
-                        stopColor="#F7C653"
-                      />
-
-                      <stop
-                        offset="1"
-                        stopColor="#ECB138"
-                      />
-                    </linearGradient>
-
-                    <linearGradient
-                      id="authSmileGreen"
-                      x1="15"
-                      y1="13"
-                      x2="34"
-                      y2="35"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop
-                        offset="0"
-                        stopColor="#0F7A72"
-                      />
-
-                      <stop
-                        offset="1"
-                        stopColor="#073F3C"
-                      />
-                    </linearGradient>
-                  </defs>
-
-                  <rect
-                    x="3"
-                    y="3"
-                    width="42"
-                    height="42"
-                    rx="14"
-                    fill="url(#authSmileGradient)"
-                  />
-
-                  <path
-                    d="M24 10.5C19.1 10.5 15.1 12.2 12.5 14.1V23.1C12.5 30.8 17.2 35.5 24 38.4C30.8 35.5 35.5 30.8 35.5 23.1V14.1C32.9 12.2 28.9 10.5 24 10.5Z"
-                    fill="rgba(255,255,255,0.9)"
-                  />
-
-                  <circle
-                    cx="19.5"
-                    cy="21"
-                    r="1.65"
-                    fill="url(#authSmileGreen)"
-                  />
-
-                  <circle
-                    cx="28.5"
-                    cy="21"
-                    r="1.65"
-                    fill="url(#authSmileGreen)"
-                  />
-
-                  <path
-                    d="M17.5 26.2C19 29.1 21.2 30.6 24 30.6C26.8 30.6 29 29.1 30.5 26.2"
-                    stroke="url(#authSmileGreen)"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-
-              <span className={styles.logoContent}>
-                <strong>
-                  Smile Bank
-                </strong>
-
-                <small>
-                  AI Memory Vault
-                </small>
-              </span>
             </Link>
           </div>
 
@@ -202,6 +99,7 @@ export default function AuthPage({
 
             <h1 className={styles.title}>
               Save the smiles
+
               <span>
                 you never want to lose.
               </span>
@@ -209,10 +107,9 @@ export default function AuthPage({
 
             <p className={styles.description}>
               Capture meaningful moments, let AI
-              help surface your clearest natural
-              smile, and stay in complete control
-              of what remains private or becomes
-              public.
+              help find your clearest natural smile,
+              and stay in complete control of what
+              remains private or becomes public.
             </p>
 
             <div className={styles.featureList}>
@@ -237,7 +134,7 @@ export default function AuthPage({
                   </strong>
 
                   <small>
-                    Your Smile Vault belongs to you.
+                    Your memories remain yours.
                   </small>
                 </span>
               </div>
@@ -289,7 +186,7 @@ export default function AuthPage({
                   </strong>
 
                   <small>
-                    Nothing becomes public by accident.
+                    You decide what becomes public.
                   </small>
                 </span>
               </div>
@@ -304,18 +201,18 @@ export default function AuthPage({
             />
 
             <span>
-              Privacy and consent are built into every
-              Smile Bank account.
+              Your private smiles stay private unless
+              you explicitly choose to share them.
             </span>
           </div>
         </section>
 
-        {/* ================================================
-            AUTH SIDE
-        ================================================= */}
+        {/* ============================================
+            AUTH PANEL
+        ============================================= */}
 
         <section
-          className={styles.authPanel}
+          className={styles.authSide}
           aria-label="Smile Bank account access"
         >
           <AuthCard

@@ -7,10 +7,9 @@ import {
   LogIn,
   Mail,
 } from "lucide-react";
-import {
-  FormEvent,
-  useState,
-} from "react";
+import { useState } from "react";
+
+import type { FormEvent } from "react";
 
 import styles from "@/components/animations/css/auth/LoginForm.module.css";
 
@@ -43,10 +42,12 @@ export default function LoginForm({
     event.preventDefault();
 
     /*
-     * Auth API integration will be added here.
+     * Login API integration will be added here.
      *
-     * After successful login:
-     * redirectPath ? router.push(redirectPath) : router.push("/vault")
+     * Successful login:
+     * redirectPath
+     *   ? router.push(redirectPath)
+     *   : router.push("/vault")
      */
 
     void redirectPath;
@@ -57,9 +58,9 @@ export default function LoginForm({
       className={styles.form}
       onSubmit={handleSubmit}
     >
-      {/* ===============================================
+      {/* ============================================
           EMAIL
-      ================================================ */}
+      ============================================= */}
 
       <div className={styles.field}>
         <label
@@ -97,9 +98,9 @@ export default function LoginForm({
         </div>
       </div>
 
-      {/* ===============================================
+      {/* ============================================
           PASSWORD
-      ================================================ */}
+      ============================================= */}
 
       <div className={styles.field}>
         <div className={styles.labelRow}>
@@ -112,9 +113,7 @@ export default function LoginForm({
 
           <button
             type="button"
-            className={
-              styles.forgotButton
-            }
+            className={styles.forgotButton}
             onClick={onForgotPassword}
           >
             Forgot password?
@@ -142,9 +141,7 @@ export default function LoginForm({
             }
             value={password}
             onChange={(event) =>
-              setPassword(
-                event.target.value,
-              )
+              setPassword(event.target.value)
             }
             className={`${styles.input} ${styles.passwordInput}`}
             placeholder="Enter your password"
@@ -154,9 +151,7 @@ export default function LoginForm({
 
           <button
             type="button"
-            className={
-              styles.passwordToggle
-            }
+            className={styles.passwordToggle}
             onClick={() =>
               setShowPassword(
                 (current) => !current,
@@ -186,14 +181,12 @@ export default function LoginForm({
         </div>
       </div>
 
-      {/* ===============================================
-          REMEMBER
-      ================================================ */}
+      {/* ============================================
+          REMEMBER ME
+      ============================================= */}
 
       <div className={styles.options}>
-        <label
-          className={styles.remember}
-        >
+        <label className={styles.remember}>
           <input
             type="checkbox"
             checked={rememberMe}
@@ -202,15 +195,11 @@ export default function LoginForm({
                 event.target.checked,
               )
             }
-            className={
-              styles.checkboxInput
-            }
+            className={styles.checkboxInput}
           />
 
           <span
-            className={
-              styles.customCheckbox
-            }
+            className={styles.customCheckbox}
             aria-hidden="true"
           />
 
@@ -218,33 +207,17 @@ export default function LoginForm({
             Keep me signed in
           </span>
         </label>
-
-        <span
-          className={styles.secureText}
-        >
-          <LockKeyhole
-            size={11}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
-
-          Secure login
-        </span>
       </div>
 
-      {/* ===============================================
-          SUBMIT
-      ================================================ */}
+      {/* ============================================
+          SIGN IN
+      ============================================= */}
 
       <button
         type="submit"
         className={styles.submitButton}
       >
-        <span
-          className={
-            styles.submitIcon
-          }
-        >
+        <span className={styles.submitIcon}>
           <LogIn
             size={18}
             strokeWidth={2}
@@ -257,31 +230,27 @@ export default function LoginForm({
         </span>
 
         <span
-          className={
-            styles.submitArrow
-          }
+          className={styles.submitArrow}
           aria-hidden="true"
         >
           →
         </span>
       </button>
 
-      {/* ===============================================
-          MOBILE ACCOUNT SWITCH
-      ================================================ */}
+      {/* ============================================
+          CREATE ACCOUNT
+      ============================================= */}
 
-      <div
-        className={styles.createAccount}
-      >
+      <div className={styles.createAccount}>
         <span>
-          Don&apos;t have an account?
+          New to Smile Bank?
         </span>
 
         <button
           type="button"
           onClick={onCreateAccount}
         >
-          Create one
+          Create account
         </button>
       </div>
     </form>
