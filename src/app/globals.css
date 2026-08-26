@@ -1,26 +1,411 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* ========================================
+     BRAND
+  ======================================== */
+
+  --smile-green: #0f7a72;
+  --smile-green-hover: #0c6e67;
+  --smile-green-dark: #095b56;
+  --smile-green-deep: #073f3c;
+
+  --smile-green-light: #e9f7f4;
+  --smile-green-soft: #f2faf8;
+
+  --smile-yellow: #f7c653;
+  --smile-yellow-hover: #efb93c;
+  --smile-yellow-light: #fff6dc;
+
+  /* Secondary warm accent for future AI states */
+  --smile-peach: #f6a978;
+  --smile-peach-light: #fff0e7;
+
+  /* ========================================
+     TEXT
+  ======================================== */
+
+  --smile-text: #183a37;
+  --smile-text-strong: #102d2b;
+  --smile-text-secondary: #536f6b;
+  --smile-text-muted: #7c918e;
+  --smile-text-light: #9aaba8;
+
+  /* ========================================
+     SURFACES
+  ======================================== */
+
+  --background: #fbfcfc;
+  --foreground: #183a37;
+
+  --smile-surface: #ffffff;
+  --smile-surface-soft: #f7faf9;
+  --smile-surface-muted: #f0f6f4;
+  --smile-surface-warm: #fffaf0;
+
+  --smile-border: #dce9e6;
+  --smile-border-soft: #e9f1ef;
+  --smile-border-strong: #c8dcd8;
+
+  /* ========================================
+     GRADIENTS
+  ======================================== */
+
+  --smile-gradient-primary:
+    linear-gradient(
+      135deg,
+      #0a645e 0%,
+      #0f7a72 48%,
+      #198b80 100%
+    );
+
+  --smile-gradient-soft:
+    linear-gradient(
+      135deg,
+      #f6fbfa 0%,
+      #edf8f6 100%
+    );
+
+  --smile-gradient-warm:
+    linear-gradient(
+      135deg,
+      #fff9e9 0%,
+      #fff1c7 100%
+    );
+
+  /* ========================================
+     LAYOUT
+  ======================================== */
+
+  --header-height: 76px;
+  --container-width: 1320px;
+
+  --page-gutter-desktop: 32px;
+  --page-gutter-tablet: 24px;
+  --page-gutter-mobile: 16px;
+
+  /* ========================================
+     BORDER RADIUS
+  ======================================== */
+
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --radius-pill: 999px;
+
+  /* ========================================
+     SHADOWS
+  ======================================== */
+
+  --shadow-xs:
+    0 2px 8px rgba(7, 63, 60, 0.04);
+
+  --shadow-sm:
+    0 6px 18px rgba(7, 63, 60, 0.06);
+
+  --shadow-md:
+    0 14px 34px rgba(7, 63, 60, 0.09);
+
+  --shadow-lg:
+    0 24px 56px rgba(7, 63, 60, 0.13);
+
+  --shadow-xl:
+    0 32px 80px rgba(7, 63, 60, 0.17);
+
+  --shadow-yellow:
+    0 12px 28px rgba(247, 198, 83, 0.28);
+
+  /* ========================================
+     TRANSITIONS
+  ======================================== */
+
+  --transition-fast: 160ms ease;
+  --transition-normal: 240ms ease;
+  --transition-slow: 360ms ease;
+
+  --transition-bounce:
+    300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ========================================
+     Z-INDEX
+  ======================================== */
+
+  --z-header: 1000;
+  --z-bottom-nav: 1200;
+  --z-overlay: 1500;
+  --z-modal: 2000;
+  --z-toast: 3000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ========================================
+   RESET
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  margin: 0;
+  padding: 0;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+
+  background: var(--background);
+
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin: 0;
+  padding: 0;
+
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family:
+    var(--font-geist-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  text-rendering: optimizeLegibility;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+}
+
+/* ========================================
+   MAIN
+======================================== */
+
+main {
+  display: block;
+
+  width: 100%;
+
+  overflow-x: clip;
+}
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--smile-text-strong);
+
+  font-weight: 750;
+
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  line-height: 1.05;
+}
+
+h2 {
+  line-height: 1.1;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+p {
+  color: var(--smile-text-secondary);
+}
+
+/* ========================================
+   LINKS
+======================================== */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ========================================
+   FORMS
+======================================== */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
+
+input,
+textarea,
+select {
+  color: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--smile-text-muted);
+}
+
+/* ========================================
+   MEDIA
+======================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* ========================================
+   LISTS
+======================================== */
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ========================================
+   SELECTION
+======================================== */
+
+::selection {
+  background: var(--smile-yellow);
+  color: var(--smile-green-deep);
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+:focus-visible {
+  outline: 3px solid rgba(247, 198, 83, 0.7);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--smile-surface-soft);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #bfd5d1;
+
+    border: 3px solid var(--smile-surface-soft);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9fbfba;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  body {
+    font-size: 15px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

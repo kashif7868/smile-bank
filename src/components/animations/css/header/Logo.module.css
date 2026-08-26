@@ -1,0 +1,191 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+
+  color: var(--smile-text-strong);
+
+  text-decoration: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.logo:hover {
+  opacity: 0.96;
+}
+
+.logo:active {
+  transform: scale(0.985);
+}
+
+.logoIcon {
+  position: relative;
+
+  display: inline-flex;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform var(--transition-bounce),
+    filter var(--transition-normal);
+}
+
+.logoIcon::before {
+  content: "";
+
+  position: absolute;
+  inset: -5px;
+
+  z-index: -1;
+
+  border-radius: 17px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(247, 198, 83, 0.18) 0%,
+      rgba(247, 198, 83, 0) 72%
+    );
+
+  opacity: 0;
+
+  transform: scale(0.8);
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-bounce);
+}
+
+.logo:hover .logoIcon {
+  transform:
+    translateY(-1px)
+    rotate(-2deg);
+
+  filter:
+    drop-shadow(
+      0 7px 14px
+      rgba(247, 198, 83, 0.18)
+    );
+}
+
+.logo:hover .logoIcon::before {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+.logoSvg {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.logoContent {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 3px;
+}
+
+.logoText {
+  color: var(--smile-text-strong);
+
+  font-size: 19px;
+  font-weight: 820;
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+
+  white-space: nowrap;
+}
+
+.logoTagline {
+  color: var(--smile-text-muted);
+
+  font-size: 8px;
+  font-weight: 750;
+  line-height: 1;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .logoIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+
+  .logoTagline {
+    font-size: 7px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .logo {
+    gap: 8px;
+  }
+
+  .logoIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logoText {
+    font-size: 17px;
+  }
+
+  .logoTagline {
+    display: none;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 380px) {
+  .logoIcon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .logoIcon,
+  .logoIcon::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,106 @@
+.rootBody {
+  min-height: 100vh;
+  margin: 0;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family:
+    var(--font-geist-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+.appShell {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100vh;
+}
+
+.mainContent {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+  flex: 1 0 auto;
+
+  overflow-x: hidden;
+}
+
+.toast {
+  font-family:
+    var(--font-geist-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+/* =========================
+   Desktop
+========================= */
+
+@media (min-width: 901px) {
+  .rootBody {
+    padding-bottom: 0;
+  }
+
+  .appShell {
+    min-height: 100vh;
+  }
+}
+
+/* =========================
+   Tablet / Mobile
+========================= */
+
+@media (max-width: 900px) {
+  .rootBody {
+    padding-bottom:
+      calc(
+        78px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .appShell {
+    min-height:
+      calc(
+        100dvh -
+        78px -
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .mainContent {
+    min-height: 0;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .rootBody {
+    padding-bottom:
+      calc(
+        74px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .appShell {
+    min-height:
+      calc(
+        100dvh -
+        74px -
+        env(safe-area-inset-bottom)
+      );
+  }
+}

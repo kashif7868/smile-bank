@@ -1,0 +1,337 @@
+.footer {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #054d49 0%,
+      #075c58 55%,
+      #086761 100%
+    );
+}
+
+.backgroundGlow {
+  position: absolute;
+
+  right: -180px;
+  top: -220px;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 200, 77, 0.12) 0%,
+      rgba(255, 200, 77, 0.03) 50%,
+      transparent 72%
+    );
+
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100% - 40px, var(--container-width));
+
+  margin: 0 auto;
+  padding: 54px 0 24px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.25fr) minmax(420px, 1fr);
+
+  gap: 80px;
+}
+
+.brandColumn {
+  max-width: 470px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+}
+
+.logoIcon {
+  display: inline-flex;
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.logoSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.logoText {
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.description {
+  max-width: 430px;
+
+  margin: 18px 0 0;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.trustBadge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 20px;
+  padding: 9px 12px;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.trustIcon {
+  display: inline-flex;
+
+  width: 17px;
+  height: 17px;
+
+  color: var(--smile-yellow);
+}
+
+.trustIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 40px;
+}
+
+.linkColumn {
+  min-width: 0;
+}
+
+.columnTitle {
+  margin: 0 0 16px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.footerLink {
+  display: inline-flex;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--smile-yellow);
+
+  transform: translateX(2px);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+
+  margin-top: 44px;
+
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding-top: 20px;
+}
+
+.copyright,
+.privacyStatement {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.privacyStatement {
+  text-align: right;
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1000px) {
+  .top {
+    grid-template-columns: 1fr;
+
+    gap: 44px;
+  }
+
+  .brandColumn {
+    max-width: 560px;
+  }
+
+  .linksGrid {
+    max-width: 600px;
+  }
+}
+
+/* =========================
+   Mobile / App UI
+========================= */
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 32px);
+
+    padding-top: 40px;
+
+    /*
+     * MobileBottomNav already has reserved
+     * space through RootLayout.
+     */
+    padding-bottom: 22px;
+  }
+
+  .top {
+    gap: 34px;
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 28px);
+
+    padding-top: 36px;
+  }
+
+  .logoIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+
+  .description {
+    margin-top: 14px;
+
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .linksGrid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px 24px;
+  }
+
+  .linkColumn:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .divider {
+    margin-top: 34px;
+  }
+
+  .bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+  .privacyStatement {
+    text-align: left;
+  }
+}
+
+/* =========================
+   Very Small Mobile
+========================= */
+
+@media (max-width: 380px) {
+  .linksGrid {
+    grid-template-columns: 1fr;
+
+    gap: 26px;
+  }
+
+  .linkColumn:last-child {
+    grid-column: auto;
+  }
+}

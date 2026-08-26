@@ -1,0 +1,448 @@
+.card {
+  position: relative;
+
+  width: 100%;
+  max-width: 410px;
+
+  margin: 0 auto;
+  padding: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fbfdfc 100%
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+
+  box-shadow:
+    0 24px 60px rgba(3, 48, 44, 0.2),
+    0 5px 14px rgba(3, 48, 44, 0.08);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding-bottom: 14px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.headerIcon {
+  display: flex;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--smile-green);
+
+  background: var(--smile-green-light);
+
+  border-radius: 10px;
+}
+
+.headerTitle div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.headerTitle strong {
+  color: var(--smile-text);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.headerTitle div > span {
+  color: var(--smile-text-muted);
+
+  font-size: 9px;
+}
+
+.encryptedBadge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  min-height: 25px;
+
+  padding: 0 9px;
+
+  flex-shrink: 0;
+
+  color: var(--smile-green-dark);
+  background: var(--smile-green-light);
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* =========================
+   Photo previews
+========================= */
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+}
+
+.preview {
+  position: relative;
+
+  min-height: 158px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  border: 1px solid var(--smile-border);
+  border-radius: 16px;
+}
+
+.selectedPreview {
+  background:
+    linear-gradient(
+      145deg,
+      #fff9e7 0%,
+      #fff3c9 100%
+    );
+
+  border: 2px solid var(--smile-yellow);
+}
+
+.secondaryPreview {
+  background:
+    linear-gradient(
+      145deg,
+      #eaf5f3 0%,
+      #dff0ed 100%
+    );
+}
+
+.selectedBadge {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+
+  display: flex;
+
+  width: 23px;
+  height: 23px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  background: var(--smile-green);
+
+  border-radius: 50%;
+
+  box-shadow: 0 5px 12px rgba(7, 92, 88, 0.2);
+}
+
+/* =========================
+   Illustration
+========================= */
+
+.face {
+  position: absolute;
+  top: 37px;
+
+  width: 64px;
+  height: 67px;
+
+  background: #efb38b;
+
+  border-radius:
+    45% 45% 48% 48% /
+    42% 42% 55% 55%;
+
+  z-index: 2;
+}
+
+.hair {
+  position: absolute;
+
+  top: -5px;
+  left: 5px;
+  right: 5px;
+
+  height: 24px;
+
+  background: #294541;
+
+  border-radius: 50% 50% 35% 35%;
+}
+
+.eyeLeft,
+.eyeRight {
+  position: absolute;
+
+  top: 29px;
+
+  width: 4px;
+  height: 4px;
+
+  background: #25443f;
+
+  border-radius: 50%;
+}
+
+.eyeLeft {
+  left: 19px;
+}
+
+.eyeRight {
+  right: 19px;
+}
+
+.smile,
+.smileSmall {
+  position: absolute;
+
+  left: 50%;
+  bottom: 13px;
+
+  width: 21px;
+  height: 10px;
+
+  border-bottom: 2px solid #25443f;
+  border-radius: 0 0 20px 20px;
+
+  transform: translateX(-50%);
+}
+
+.smileSmall {
+  width: 16px;
+  height: 7px;
+}
+
+.personBody {
+  width: 92px;
+  height: 68px;
+
+  margin-bottom: -15px;
+
+  background: var(--smile-green);
+
+  border-radius: 50% 50% 12px 12px;
+
+  z-index: 1;
+}
+
+/* =========================
+   AI Result
+========================= */
+
+.aiResult {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 12px;
+  padding: 11px 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef8f6 0%,
+      #e4f3f0 100%
+    );
+
+  border: 1px solid #d8ebe7;
+  border-radius: 13px;
+}
+
+.aiIcon {
+  display: flex;
+
+  width: 31px;
+  height: 31px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--smile-green);
+
+  background: #ffffff;
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 4px 10px rgba(7, 92, 88, 0.08);
+}
+
+.aiContent {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.aiContent strong {
+  color: var(--smile-text);
+
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.aiContent span {
+  color: var(--smile-text-muted);
+
+  font-size: 8.5px;
+  line-height: 1.4;
+}
+
+.aiCheck {
+  display: flex;
+
+  width: 22px;
+  height: 22px;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  background: var(--smile-green);
+
+  border-radius: 50%;
+}
+
+/* =========================
+   Bottom detail
+========================= */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 13px 2px 0;
+}
+
+.privacy {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--smile-text-secondary);
+
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.privacyDot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  background: var(--smile-green);
+
+  border-radius: 50%;
+}
+
+.photoCount {
+  color: var(--smile-text-muted);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 640px) {
+  .card {
+    max-width: 370px;
+
+    padding: 15px;
+
+    border-radius: 20px;
+  }
+
+  .preview {
+    min-height: 145px;
+  }
+
+  .face {
+    top: 34px;
+
+    width: 58px;
+    height: 61px;
+  }
+
+  .personBody {
+    width: 82px;
+    height: 62px;
+  }
+
+  .headerTitle strong {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 390px) {
+  .card {
+    padding: 13px;
+  }
+
+  .preview {
+    min-height: 132px;
+  }
+
+  .encryptedBadge {
+    padding: 0 7px;
+
+    font-size: 8px;
+  }
+
+  .headerIcon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 6px;
+  }
+}

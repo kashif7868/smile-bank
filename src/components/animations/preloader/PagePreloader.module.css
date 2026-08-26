@@ -1,0 +1,211 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100dvh;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(255, 200, 77, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #075c58 0%,
+      #0f786f 56%,
+      #128279 100%
+    );
+
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 320ms ease,
+    visibility 320ms ease;
+}
+
+.preloaderLeaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 24px;
+
+  text-align: center;
+}
+
+.logoWrap {
+  position: relative;
+
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  filter:
+    drop-shadow(
+      0 12px 24px
+      rgba(2, 47, 43, 0.24)
+    );
+
+  animation:
+    smileFloat 1.8s ease-in-out infinite;
+}
+
+.logoSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.pulseRing {
+  position: absolute;
+  inset: 0;
+
+  border: 1px solid
+    rgba(255, 200, 77, 0.48);
+
+  border-radius: 50%;
+
+  animation:
+    smilePulse 1.8s ease-out infinite;
+}
+
+.brand {
+  margin-top: 18px;
+
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+
+  letter-spacing: -0.04em;
+}
+
+.tagline {
+  margin: 10px 0 0;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 22px;
+}
+
+.loader span {
+  width: 6px;
+  height: 6px;
+
+  background: #ffc84d;
+
+  border-radius: 50%;
+
+  animation:
+    loaderDot 1.1s ease-in-out infinite;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+@keyframes smileFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes smilePulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.85);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes loaderDot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 640px) {
+  .logoWrap {
+    width: 74px;
+    height: 74px;
+  }
+
+  .logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .brand {
+    font-size: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .pulseRing,
+  .loader span {
+    animation: none;
+  }
+}

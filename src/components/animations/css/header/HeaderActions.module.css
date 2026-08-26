@@ -1,0 +1,207 @@
+.headerActions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.signInButton,
+.openAccountButton {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 13px;
+
+  font-size: 13px;
+  font-weight: 780;
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.signInButton {
+  gap: 7px;
+
+  color: var(--smile-text);
+
+  background:
+    rgba(255, 255, 255, 0.78);
+
+  border:
+    1px solid
+    var(--smile-border);
+}
+
+.signInButton:hover {
+  color: var(--smile-green-dark);
+
+  background: #ffffff;
+
+  border-color:
+    rgba(15, 122, 114, 0.28);
+
+  box-shadow:
+    0 7px 20px
+    rgba(7, 63, 60, 0.07);
+
+  transform: translateY(-1px);
+}
+
+.actionIcon {
+  flex-shrink: 0;
+
+  color: var(--smile-text-muted);
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.signInButton:hover .actionIcon {
+  color: var(--smile-green);
+
+  transform: translateY(-1px);
+}
+
+.openAccountButton {
+  gap: 8px;
+
+  overflow: hidden;
+
+  color: var(--smile-green-deep);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd468 0%,
+      var(--smile-yellow) 55%,
+      #efb93c 100%
+    );
+
+  border:
+    1px solid
+    rgba(239, 185, 60, 0.7);
+
+  box-shadow:
+    0 7px 20px
+    rgba(247, 198, 83, 0.22);
+}
+
+.openAccountButton::before {
+  content: "";
+
+  position: absolute;
+
+  top: -80%;
+  left: -42%;
+
+  width: 34px;
+  height: 200%;
+
+  pointer-events: none;
+
+  background:
+    rgba(255, 255, 255, 0.28);
+
+  transform: rotate(24deg);
+
+  transition:
+    left var(--transition-slow);
+}
+
+.openAccountButton:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #ffdb78 0%,
+      #f7c653 48%,
+      #ecb437 100%
+    );
+
+  box-shadow:
+    0 11px 28px
+    rgba(247, 198, 83, 0.3);
+
+  transform: translateY(-1px);
+}
+
+.openAccountButton:hover::before {
+  left: 120%;
+}
+
+.openAccountIcon {
+  position: relative;
+  z-index: 1;
+
+  flex-shrink: 0;
+
+  color: var(--smile-green-dark);
+
+  transition:
+    transform var(--transition-fast);
+}
+
+.openAccountButton span {
+  position: relative;
+  z-index: 1;
+}
+
+.openAccountButton:hover .openAccountIcon {
+  transform: translate(2px, -2px);
+}
+
+.signInButton:active,
+.openAccountButton:active {
+  transform: translateY(1px);
+}
+
+/* Laptop */
+
+@media (max-width: 1120px) {
+  .headerActions {
+    gap: 8px;
+  }
+
+  .signInButton,
+  .openAccountButton {
+    min-height: 40px;
+
+    padding: 0 14px;
+
+    font-size: 12px;
+  }
+
+  .signInButton {
+    gap: 6px;
+  }
+
+  .openAccountButton {
+    gap: 6px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .signInButton,
+  .openAccountButton,
+  .openAccountButton::before,
+  .actionIcon,
+  .openAccountIcon {
+    transition: none;
+  }
+}

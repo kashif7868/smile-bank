@@ -1,0 +1,136 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  border-bottom: 1px solid rgba(220, 233, 230, 0.82);
+
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 7px 30px rgba(7, 63, 60, 0.035);
+}
+
+.headerBackdrop {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 12% -70%,
+      rgba(247, 198, 83, 0.12),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 82% -100%,
+      rgba(15, 122, 114, 0.08),
+      transparent 34%
+    );
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+
+  width: min(
+    calc(100% - (var(--page-gutter-desktop) * 2)),
+    var(--container-width)
+  );
+
+  min-height: var(--header-height);
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+
+  gap: 34px;
+}
+
+.logoSlot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-width: 0;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktopActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.mobileActions {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Laptop */
+
+@media (max-width: 1120px) {
+  .container {
+    width: min(
+      calc(100% - 48px),
+      var(--container-width)
+    );
+
+    gap: 20px;
+  }
+}
+
+/* Tablet / Mobile */
+
+@media (max-width: 900px) {
+  .container {
+    width: min(
+      calc(100% - 32px),
+      var(--container-width)
+    );
+
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    gap: 12px;
+  }
+
+  .desktopNav,
+  .desktopActions {
+    display: none;
+  }
+
+  .mobileActions {
+    display: flex;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+}
