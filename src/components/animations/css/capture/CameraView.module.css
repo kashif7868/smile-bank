@@ -1,40 +1,52 @@
 .camera {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
+  height: 100%;
+
+  min-height: 0;
 }
 
 /* =========================================================
-   LIVE VIEWPORT
+   LIVE CAMERA VIEWPORT
 ========================================================= */
 
 .viewport {
   position: relative;
 
+  flex: 1;
+
   width: 100%;
-  aspect-ratio: 16 / 10;
+  min-height: 420px;
 
   overflow: hidden;
 
-  background:
-    linear-gradient(
-      145deg,
-      #071d1b 0%,
-      #0a2926 100%
-    );
+  background: #000000;
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.07);
+    rgba(255, 255, 255, 0.08);
 
-  border-radius: 22px;
+  border-radius: 26px;
+
+  box-shadow:
+    0 22px 60px
+    rgba(0, 0, 0, 0.34);
 
   isolation: isolate;
 }
 
 /* =========================================================
-   CAMERA VIDEO
+   CAMERA FEED
 ========================================================= */
 
 .video {
+  position: absolute;
+  inset: 0;
+
   display: block;
 
   width: 100%;
@@ -42,11 +54,35 @@
 
   object-fit: cover;
 
-  background: #071d1b;
+  background: #000000;
 }
 
 .videoMirrored {
   transform: scaleX(-1);
+}
+
+/* =========================================================
+   SUBTLE CAMERA OVERLAY
+========================================================= */
+
+.viewport::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.13) 0%,
+      transparent 20%,
+      transparent 72%,
+      rgba(0, 0, 0, 0.17) 100%
+    );
 }
 
 /* =========================================================
@@ -70,26 +106,31 @@
 
   padding:
     0
-    9px;
+    10px;
 
-  color: #ffffff;
+  color:
+    rgba(255, 255, 255, 0.94);
 
   background:
-    rgba(4, 28, 26, 0.58);
+    rgba(0, 0, 0, 0.38);
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.1);
+    rgba(255, 255, 255, 0.11);
 
   border-radius:
     var(--radius-pill);
 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  font-size: 7.4px;
-  font-weight: 720;
+  font-size: 10px;
+  font-weight: 650;
   line-height: 1;
+
+  box-shadow:
+    0 6px 18px
+    rgba(0, 0, 0, 0.14);
 }
 
 .liveDot {
@@ -98,17 +139,17 @@
 
   flex-shrink: 0;
 
-  background: #7ae5a5;
+  background: #78e0a0;
 
   border-radius: 50%;
 
   box-shadow:
     0 0 0 3px
-    rgba(122, 229, 165, 0.12);
+    rgba(120, 224, 160, 0.13);
 }
 
 /* =========================================================
-   HIDDEN CANVAS
+   CAPTURE CANVAS
 ========================================================= */
 
 .canvas {
@@ -125,39 +166,84 @@
 }
 
 /* =========================================================
-   TABLET
+   DESKTOP
 ========================================================= */
 
-@media (max-width: 900px) {
-  .viewport {
-    aspect-ratio: 4 / 3;
+@media (min-width: 901px) {
+  .camera {
+    min-height: 580px;
+  }
 
-    border-radius: 20px;
+  .viewport {
+    min-height: 500px;
+
+    aspect-ratio: 16 / 10;
   }
 }
 
 /* =========================================================
-   MOBILE
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .camera {
+    min-height: 600px;
+  }
+
+  .viewport {
+    min-height: 500px;
+
+    border-radius: 24px;
+  }
+}
+
+/* =========================================================
+   MOBILE CAMERA MODE
 ========================================================= */
 
 @media (max-width: 640px) {
-  .viewport {
-    aspect-ratio: 3 / 4;
+  .camera {
+    flex: 1;
 
-    border-radius: 18px;
+    min-height:
+      calc(
+        100dvh -
+        180px -
+        env(safe-area-inset-top) -
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .viewport {
+    flex: 1;
+
+    width: 100%;
+
+    min-height: 0;
+
+    aspect-ratio: auto;
+
+    border: 0;
+
+    border-radius: 22px;
+
+    box-shadow: none;
   }
 
   .liveBadge {
-    top: 10px;
-    left: 10px;
+    top: 12px;
+    left: 12px;
 
     min-height: 27px;
 
     padding:
       0
-      8px;
+      9px;
 
-    font-size: 7px;
+    background:
+      rgba(0, 0, 0, 0.34);
+
+    font-size: 9px;
   }
 
   .liveDot {
@@ -171,13 +257,74 @@
 ========================================================= */
 
 @media (max-width: 390px) {
+  .camera {
+    min-height:
+      calc(
+        100dvh -
+        168px -
+        env(safe-area-inset-top) -
+        env(safe-area-inset-bottom)
+      );
+  }
+
   .viewport {
-    border-radius: 17px;
+    border-radius: 18px;
   }
 
   .liveBadge {
+    top: 10px;
+    left: 10px;
+
     min-height: 25px;
 
-    font-size: 6.6px;
+    padding:
+      0
+      8px;
+
+    font-size: 8.5px;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+========================================================= */
+
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) {
+  .camera {
+    min-height: 390px;
+  }
+
+  .viewport {
+    min-height: 300px;
+
+    border-radius: 18px;
+  }
+}
+
+/* =========================================================
+   SHORT MOBILE
+========================================================= */
+
+@media (
+  max-width: 640px
+) and (
+  max-height: 720px
+) {
+  .camera {
+    min-height:
+      calc(
+        100dvh -
+        145px -
+        env(safe-area-inset-top) -
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .viewport {
+    border-radius: 17px;
   }
 }

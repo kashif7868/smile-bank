@@ -1,10 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import {
-  Camera,
+  ArrowLeft,
   RotateCcw,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import {
   useEffect,
@@ -85,108 +85,126 @@ export default function Capture() {
     setStage("camera");
   };
 
-  return (
-    <main className={styles.page}>
-      <div
-        className={
-          styles.backgroundGlowOne
-        }
-        aria-hidden="true"
-      />
+  /* =======================================================
+     CAMERA
+  ======================================================= */
 
-      <div
-        className={
-          styles.backgroundGlowTwo
-        }
-        aria-hidden="true"
-      />
+  if (stage === "camera") {
+    return (
+      <main className={styles.cameraPage}>
+        <div className={styles.cameraShell}>
+          <div className={styles.cameraTopBar}>
+            <Link
+              href="/"
+              className={styles.backButton}
+              aria-label="Close camera"
+            >
+              <ArrowLeft
+                size={20}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            </Link>
 
-      <div className={styles.container}>
-        {/* ============================================
-            HEADER
-        ============================================= */}
+            <div className={styles.cameraPrompt}>
+              <strong>
+                Keep smiling
+              </strong>
 
-        <header className={styles.header}>
-          <div className={styles.eyebrow}>
-            <Sparkles
-              size={14}
-              strokeWidth={2}
+              <span>
+                Look naturally at the camera
+              </span>
+            </div>
+
+            <div
+              className={styles.topBarSpacer}
               aria-hidden="true"
             />
-
-            <span>
-              {stage === "camera"
-                ? "Smile Capture"
-                : "Smile Review"}
-            </span>
           </div>
 
-          <h1 className={styles.title}>
-            {stage === "camera"
-              ? "Capture your smile"
-              : "Review your smile"}
-          </h1>
-
-          <p className={styles.description}>
-            {stage === "camera"
-              ? "Use your phone camera or webcam to capture a clear natural smile. You’ll review everything before anything is saved."
-              : "Check your captured smile before continuing. Your original image quality is preserved."}
-          </p>
-        </header>
-
-        {/* ============================================
-            CAMERA
-        ============================================= */}
-
-        {stage === "camera" && (
-          <section
-            className={
-              styles.cameraSection
-            }
-            aria-label="Smile camera"
-          >
+          <div className={styles.cameraArea}>
             <CameraView
               onCaptureConfirmed={
                 handleCaptureConfirmed
               }
             />
-          </section>
-        )}
+          </div>
 
-        {/* ============================================
-            REVIEW
-        ============================================= */}
+          <div className={styles.cameraPrivacy}>
+            <ShieldCheck
+              size={13}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
 
-        {stage === "review" &&
-          selectedSmile &&
+            <span>
+              Your photo stays private until
+              you approve it
+            </span>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  /* =======================================================
+     REVIEW
+  ======================================================= */
+
+  return (
+    <main className={styles.reviewPage}>
+      <div className={styles.reviewContainer}>
+        <div className={styles.reviewTopBar}>
+          <button
+            type="button"
+            className={styles.reviewBackButton}
+            onClick={handleRetake}
+            aria-label="Return to camera"
+          >
+            <ArrowLeft
+              size={19}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
+          </button>
+
+          <div className={styles.reviewHeading}>
+            <strong>
+              Review your smile
+            </strong>
+
+            <span>
+              Make sure you’re happy with
+              the photo
+            </span>
+          </div>
+
+          <div
+            className={styles.topBarSpacer}
+            aria-hidden="true"
+          />
+        </div>
+
+        {selectedSmile &&
           reviewImageUrl && (
-            <section
-              className={
-                styles.reviewSection
-              }
-              aria-label="Review captured smile"
+            <div
+              className={styles.reviewCard}
             >
-              <div
-                className={
-                  styles.reviewPreview
-                }
-              >
-                <CapturePreview
-                  photo={{
-                    url: reviewImageUrl,
-                    width:
-                      selectedSmile.width,
-                    height:
-                      selectedSmile.height,
-                    mimeType:
-                      selectedSmile.mimeType,
-                  }}
-                />
-              </div>
+              <CapturePreview
+                photo={{
+                  url: reviewImageUrl,
+                  width:
+                    selectedSmile.width,
+                  height:
+                    selectedSmile.height,
+                  mimeType:
+                    selectedSmile.mimeType,
+                }}
+              />
 
               <div
                 className={
-                  styles.reviewDetails
+                  styles.reviewBottom
                 }
               >
                 <div
@@ -195,88 +213,37 @@ export default function Capture() {
                   }
                 >
                   <ShieldCheck
-                    size={15}
+                    size={14}
                     strokeWidth={2}
                     aria-hidden="true"
                   />
 
                   <span>
-                    This image remains on your
-                    device until you choose the
-                    next action.
+                    This image is still only
+                    on your device.
                   </span>
                 </div>
 
-                <div
+                <button
+                  type="button"
                   className={
-                    styles.reviewActions
+                    styles.retakeButton
                   }
+                  onClick={handleRetake}
                 >
-                  <button
-                    type="button"
-                    className={
-                      styles.retakeButton
-                    }
-                    onClick={
-                      handleRetake
-                    }
-                  >
-                    <RotateCcw
-                      size={16}
-                      strokeWidth={2}
-                      aria-hidden="true"
-                    />
+                  <RotateCcw
+                    size={16}
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
 
-                    <span>
-                      Retake photo
-                    </span>
-                  </button>
-                </div>
+                  <span>
+                    Retake
+                  </span>
+                </button>
               </div>
-            </section>
+            </div>
           )}
-
-        {/* ============================================
-            TRUST
-        ============================================= */}
-
-        <div className={styles.trustRow}>
-          <div
-            className={styles.trustItem}
-          >
-            <Camera
-              size={15}
-              strokeWidth={2}
-              aria-hidden="true"
-            />
-
-            <span>
-              High-quality camera capture
-            </span>
-          </div>
-
-          <span
-            className={
-              styles.trustDivider
-            }
-            aria-hidden="true"
-          />
-
-          <div
-            className={styles.trustItem}
-          >
-            <ShieldCheck
-              size={15}
-              strokeWidth={2}
-              aria-hidden="true"
-            />
-
-            <span>
-              Nothing is saved without your
-              approval
-            </span>
-          </div>
-        </div>
       </div>
     </main>
   );

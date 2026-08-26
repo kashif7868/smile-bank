@@ -1,410 +1,372 @@
-.page {
-  position: relative;
-  isolation: isolate;
+/* =========================================================
+   CAMERA PAGE
+========================================================= */
 
+.cameraPage {
   width: 100%;
   min-height: calc(
     100dvh - var(--header-height)
   );
 
+  background:
+    #061210;
+
+  color: #ffffff;
+
   overflow: hidden;
-
-  background:
-    linear-gradient(
-      180deg,
-      #f8fbfa 0%,
-      #f4f9f7 100%
-    );
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
+.cameraShell {
+  display: flex;
+  flex-direction: column;
 
-.backgroundGlowOne {
-  position: absolute;
+  width: 100%;
+  max-width: 980px;
 
-  top: -260px;
-  left: -180px;
-
-  z-index: 0;
-
-  width: 520px;
-  height: 520px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(15, 122, 114, 0.09) 0%,
-      rgba(15, 122, 114, 0.025) 42%,
-      transparent 72%
-    );
-
-  pointer-events: none;
-}
-
-.backgroundGlowTwo {
-  position: absolute;
-
-  right: -220px;
-  bottom: -280px;
-
-  z-index: 0;
-
-  width: 560px;
-  height: 560px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(247, 198, 83, 0.11) 0%,
-      rgba(247, 198, 83, 0.03) 42%,
-      transparent 72%
-    );
-
-  pointer-events: none;
-}
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-  position: relative;
-  z-index: 2;
-
-  width: min(
-    calc(
-      100% -
-      (
-        var(--page-gutter-desktop) * 2
-      )
-    ),
-    980px
+  min-height: calc(
+    100dvh - var(--header-height)
   );
 
   margin: 0 auto;
 
   padding:
-    36px
-    0
-    54px;
+    18px
+    24px
+    20px;
 }
 
 /* =========================================================
-   HEADER
+   CAMERA TOP BAR
 ========================================================= */
 
-.header {
-  display: flex;
-  flex-direction: column;
+.cameraTopBar {
+  display: grid;
+
+  grid-template-columns:
+    44px
+    minmax(0, 1fr)
+    44px;
 
   align-items: center;
 
-  max-width: 620px;
-
-  margin:
-    0
-    auto
-    24px;
-
-  text-align: center;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  min-height: 28px;
-
-  padding:
-    0
-    10px;
-
-  color: var(--smile-green-dark);
-
-  background:
-    var(--smile-green-soft);
-
-  border:
-    1px solid
-    rgba(15, 122, 114, 0.1);
-
-  border-radius:
-    var(--radius-pill);
-
-  font-size: 7.2px;
-  font-weight: 800;
-  line-height: 1;
-
-  letter-spacing: 0.06em;
-
-  text-transform: uppercase;
-}
-
-.title {
-  margin:
-    13px
-    0
-    0;
-
-  color:
-    var(--smile-text-strong);
-
-  font-size:
-    clamp(
-      32px,
-      3.8vw,
-      45px
-    );
-
-  font-weight: 850;
-  line-height: 1.03;
-
-  letter-spacing: -0.048em;
-
-  text-wrap: balance;
-}
-
-.description {
-  max-width: 510px;
-
-  margin:
-    10px
-    auto
-    0;
-
-  color:
-    var(--smile-text-secondary);
-
-  font-size: 10px;
-  line-height: 1.58;
-
-  text-wrap: pretty;
-}
-
-/* =========================================================
-   CAMERA SECTION
-========================================================= */
-
-.cameraSection {
-  width: 100%;
-  max-width: 880px;
-
-  margin: 0 auto;
-
-  padding: 12px;
-
-  background:
-    rgba(255, 255, 255, 0.84);
-
-  border:
-    1px solid
-    rgba(220, 233, 230, 0.88);
-
-  border-radius: 26px;
-
-  box-shadow:
-    0 18px 46px
-    rgba(7, 63, 60, 0.085),
-    inset 0 1px 0
-    rgba(255, 255, 255, 0.9);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* =========================================================
-   REVIEW SECTION
-========================================================= */
-
-.reviewSection {
-  width: 100%;
-  max-width: 820px;
-
-  margin: 0 auto;
-
-  overflow: hidden;
-
-  background:
-    rgba(255, 255, 255, 0.94);
-
-  border:
-    1px solid
-    rgba(220, 233, 230, 0.9);
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 20px 50px
-    rgba(7, 63, 60, 0.09);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* =========================================================
-   REVIEW MEDIA
-========================================================= */
-
-.reviewMedia {
-  position: relative;
+  gap: 14px;
 
   width: 100%;
-  aspect-ratio: 16 / 10;
 
-  overflow: hidden;
-
-  background:
-    #071d1b;
+  margin-bottom: 15px;
 }
 
-.reviewImage {
-  object-fit: cover;
-}
-
-/* =========================================================
-   REVIEW STATUS
-========================================================= */
-
-.reviewStatus {
-  position: absolute;
-
-  top: 14px;
-  left: 14px;
-
-  z-index: 2;
-
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  min-height: 30px;
-
-  padding:
-    0
-    10px;
-
-  color: #ffffff;
-
-  background:
-    rgba(4, 28, 26, 0.62);
-
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.1);
-
-  border-radius:
-    var(--radius-pill);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  font-size: 7.5px;
-  font-weight: 720;
-}
-
-/* =========================================================
-   REVIEW DETAILS
-========================================================= */
-
-.reviewDetails {
-  padding: 18px;
-}
-
-.reviewInfo {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.reviewInfoIcon {
+.backButton {
   display: inline-flex;
 
-  width: 38px;
-  height: 38px;
-
-  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
 
   align-items: center;
   justify-content: center;
 
   color:
-    var(--smile-green);
+    rgba(255, 255, 255, 0.92);
 
   background:
-    var(--smile-green-soft);
+    rgba(255, 255, 255, 0.07);
 
   border:
     1px solid
-    rgba(15, 122, 114, 0.09);
+    rgba(255, 255, 255, 0.1);
 
-  border-radius: 11px;
+  border-radius: 50%;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
-.reviewInfo > div:last-child {
-  display: flex;
-  flex-direction: column;
+.backButton:hover {
+  background:
+    rgba(255, 255, 255, 0.11);
 
-  min-width: 0;
+  border-color:
+    rgba(255, 255, 255, 0.16);
 
-  gap: 4px;
+  transform:
+    translateY(-1px);
 }
 
-.reviewInfo strong {
-  color:
-    var(--smile-text-strong);
-
-  font-size: 10px;
-  font-weight: 780;
-  line-height: 1.25;
-}
-
-.reviewInfo span {
-  color:
-    var(--smile-text-muted);
-
-  font-size: 7.5px;
-  line-height: 1.4;
+.backButton:active {
+  transform:
+    scale(0.96);
 }
 
 /* =========================================================
-   REVIEW PRIVACY
+   CAMERA PROMPT
 ========================================================= */
 
-.reviewPrivacy {
+.cameraPrompt {
   display: flex;
+  flex-direction: column;
+
   align-items: center;
 
-  gap: 7px;
+  min-width: 0;
+
+  gap: 3px;
+
+  text-align: center;
+}
+
+.cameraPrompt strong {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 760;
+  line-height: 1.2;
+
+  letter-spacing: -0.02em;
+}
+
+.cameraPrompt span {
+  color:
+    rgba(255, 255, 255, 0.52);
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.topBarSpacer {
+  width: 42px;
+  height: 42px;
+}
+
+/* =========================================================
+   CAMERA AREA
+========================================================= */
+
+.cameraArea {
+  display: flex;
+  flex: 1;
+
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   CAMERA PRIVACY
+========================================================= */
+
+.cameraPrivacy {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
 
   margin-top: 14px;
-  padding:
-    10px
-    11px;
 
   color:
-    var(--smile-text-secondary);
+    rgba(255, 255, 255, 0.44);
+
+  font-size: 10px;
+  font-weight: 520;
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+.cameraPrivacy svg {
+  flex-shrink: 0;
+
+  color:
+    rgba(247, 198, 83, 0.82);
+}
+
+/* =========================================================
+   REVIEW PAGE
+========================================================= */
+
+.reviewPage {
+  width: 100%;
+  min-height: calc(
+    100dvh - var(--header-height)
+  );
 
   background:
-    var(--smile-green-soft);
+    #071412;
+
+  color: #ffffff;
+}
+
+.reviewContainer {
+  width:
+    min(
+      calc(100% - 40px),
+      820px
+    );
+
+  margin: 0 auto;
+
+  padding:
+    20px
+    0
+    40px;
+}
+
+/* =========================================================
+   REVIEW TOP BAR
+========================================================= */
+
+.reviewTopBar {
+  display: grid;
+
+  grid-template-columns:
+    44px
+    minmax(0, 1fr)
+    44px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin-bottom: 16px;
+}
+
+.reviewBackButton {
+  display: inline-flex;
+
+  width: 42px;
+  height: 42px;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.07);
 
   border:
     1px solid
-    var(--smile-border-soft);
+    rgba(255, 255, 255, 0.1);
 
-  border-radius: 10px;
+  border-radius: 50%;
 
-  font-size: 7.5px;
-  font-weight: 600;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.reviewBackButton:hover {
+  background:
+    rgba(255, 255, 255, 0.11);
+
+  transform:
+    translateY(-1px);
+}
+
+.reviewBackButton:active {
+  transform:
+    scale(0.96);
+}
+
+/* =========================================================
+   REVIEW HEADING
+========================================================= */
+
+.reviewHeading {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  min-width: 0;
+
+  gap: 3px;
+
+  text-align: center;
+}
+
+.reviewHeading strong {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 760;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.02em;
+}
+
+.reviewHeading span {
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   REVIEW CARD
+========================================================= */
+
+.reviewCard {
+  width: 100%;
+
+  padding: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 24px 60px
+    rgba(0, 0, 0, 0.24);
+}
+
+/* =========================================================
+   REVIEW BOTTOM
+========================================================= */
+
+.reviewBottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding:
+    14px
+    4px
+    3px;
+}
+
+.reviewPrivacy {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  font-size: 10px;
+  font-weight: 520;
   line-height: 1.4;
 }
 
@@ -412,23 +374,7 @@
   flex-shrink: 0;
 
   color:
-    var(--smile-green);
-}
-
-/* =========================================================
-   REVIEW ACTIONS
-========================================================= */
-
-.reviewActions {
-  display: grid;
-
-  grid-template-columns:
-    minmax(110px, 0.45fr)
-    minmax(180px, 1fr);
-
-  gap: 10px;
-
-  margin-top: 15px;
+    rgba(247, 198, 83, 0.85);
 }
 
 /* =========================================================
@@ -438,7 +384,9 @@
 .retakeButton {
   display: inline-flex;
 
-  min-height: 44px;
+  min-height: 40px;
+
+  flex-shrink: 0;
 
   align-items: center;
   justify-content: center;
@@ -447,22 +395,21 @@
 
   padding:
     0
-    14px;
+    15px;
 
-  color:
-    var(--smile-text);
+  color: #ffffff;
 
   background:
-    #ffffff;
+    rgba(255, 255, 255, 0.08);
 
   border:
     1px solid
-    var(--smile-border);
+    rgba(255, 255, 255, 0.11);
 
-  border-radius: 11px;
+  border-radius: 12px;
 
-  font-size: 8.5px;
-  font-weight: 740;
+  font-size: 12px;
+  font-weight: 680;
 
   transition:
     background var(--transition-fast),
@@ -472,10 +419,10 @@
 
 .retakeButton:hover {
   background:
-    var(--smile-surface-soft);
+    rgba(255, 255, 255, 0.12);
 
   border-color:
-    var(--smile-border-strong);
+    rgba(255, 255, 255, 0.17);
 
   transform:
     translateY(-1px);
@@ -483,118 +430,7 @@
 
 .retakeButton:active {
   transform:
-    scale(0.99);
-}
-
-/* =========================================================
-   AI REVIEW BUTTON
-========================================================= */
-
-.aiReviewButton {
-  display: inline-flex;
-
-  min-height: 44px;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 8px;
-
-  padding:
-    0
-    16px;
-
-  color:
-    var(--smile-green-deep);
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffe18a 0%,
-      var(--smile-yellow) 55%,
-      #efb93c 100%
-    );
-
-  border:
-    1px solid
-    rgba(239, 185, 60, 0.55);
-
-  border-radius: 11px;
-
-  box-shadow:
-    0 8px 18px
-    rgba(247, 198, 83, 0.18);
-
-  font-size: 8.5px;
-  font-weight: 800;
-
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.aiReviewButton:hover {
-  transform:
-    translateY(-1px);
-
-  box-shadow:
-    0 11px 22px
-    rgba(247, 198, 83, 0.23);
-}
-
-.aiReviewButton:active {
-  transform:
-    scale(0.99);
-}
-
-/* =========================================================
-   TRUST
-========================================================= */
-
-.trustRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  gap: 12px;
-
-  max-width: 760px;
-
-  margin:
-    16px
-    auto
-    0;
-
-  color:
-    var(--smile-text-muted);
-}
-
-.trustItem {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 6px;
-
-  font-size: 7.3px;
-  font-weight: 610;
-  line-height: 1.4;
-}
-
-.trustItem svg {
-  flex-shrink: 0;
-
-  color:
-    var(--smile-green);
-}
-
-.trustDivider {
-  width: 1px;
-  height: 15px;
-
-  background:
-    var(--smile-border);
+    scale(0.98);
 }
 
 /* =========================================================
@@ -602,187 +438,201 @@
 ========================================================= */
 
 @media (max-width: 900px) {
-  .container {
-    width:
-      min(
-        calc(100% - 30px),
-        760px
-      );
+  .cameraShell {
+    max-width: 760px;
 
     padding:
-      30px
-      0
-      120px;
+      16px
+      18px
+      110px;
   }
 
-  .title {
-    font-size: 38px;
-  }
+  .reviewContainer {
+    width:
+      min(
+        calc(100% - 28px),
+        700px
+      );
 
-  .cameraSection,
-  .reviewSection {
-    border-radius: 22px;
-  }
-
-  .reviewMedia {
-    aspect-ratio: 4 / 3;
+    padding-bottom: 120px;
   }
 }
 
 /* =========================================================
-   MOBILE
+   MOBILE CAMERA APP MODE
 ========================================================= */
 
 @media (max-width: 640px) {
-  .page {
+  .cameraPage {
     min-height: 100dvh;
 
-    overflow: visible;
+    background: #000000;
   }
 
-  .container {
-    width:
-      calc(100% - 12px);
+  .cameraShell {
+    width: 100%;
+    max-width: none;
+
+    min-height: 100dvh;
 
     padding:
-      16px
+      calc(
+        10px +
+        env(safe-area-inset-top)
+      )
+      8px
+      calc(
+        92px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .cameraTopBar {
+    grid-template-columns:
+      40px
+      minmax(0, 1fr)
+      40px;
+
+    gap: 8px;
+
+    margin-bottom: 9px;
+
+    padding:
       0
+      4px;
+  }
+
+  .backButton {
+    width: 38px;
+    height: 38px;
+
+    background:
+      rgba(0, 0, 0, 0.34);
+
+    border-color:
+      rgba(255, 255, 255, 0.12);
+  }
+
+  .topBarSpacer {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cameraPrompt {
+    gap: 1px;
+  }
+
+  .cameraPrompt strong {
+    font-size: 14px;
+  }
+
+  .cameraPrompt span {
+    font-size: 10px;
+  }
+
+  .cameraArea {
+    align-items: stretch;
+  }
+
+  .cameraPrivacy {
+    margin-top: 9px;
+
+    padding:
+      0
+      10px;
+
+    font-size: 9px;
+  }
+
+  /* =======================================================
+     MOBILE REVIEW
+  ======================================================= */
+
+  .reviewPage {
+    min-height: 100dvh;
+
+    background: #000000;
+  }
+
+  .reviewContainer {
+    width: 100%;
+
+    padding:
+      calc(
+        10px +
+        env(safe-area-inset-top)
+      )
+      8px
       calc(
         100px +
         env(safe-area-inset-bottom)
       );
   }
 
-  .header {
-    max-width: 420px;
-
-    margin-bottom: 15px;
-
-    padding:
-      0
-      8px;
-  }
-
-  .eyebrow {
-    min-height: 25px;
-
-    padding:
-      0
-      9px;
-
-    font-size: 6.6px;
-  }
-
-  .title {
-    margin-top: 10px;
-
-    font-size: 28px;
-  }
-
-  .description {
-    max-width: 380px;
-
-    margin-top: 7px;
-
-    font-size: 8.3px;
-    line-height: 1.48;
-  }
-
-  .cameraSection {
-    padding: 6px;
-
-    border-radius: 20px;
-
-    box-shadow:
-      0 14px 34px
-      rgba(7, 63, 60, 0.075);
-  }
-
-  .reviewSection {
-    border-radius: 20px;
-  }
-
-  .reviewMedia {
-    aspect-ratio: 3 / 4;
-  }
-
-  .reviewStatus {
-    top: 10px;
-    left: 10px;
-
-    min-height: 27px;
-
-    padding:
-      0
-      9px;
-
-    font-size: 7px;
-  }
-
-  .reviewDetails {
-    padding: 14px;
-  }
-
-  .reviewInfoIcon {
-    width: 35px;
-    height: 35px;
-  }
-
-  .reviewInfo strong {
-    font-size: 9px;
-  }
-
-  .reviewInfo span {
-    font-size: 7px;
-  }
-
-  .reviewPrivacy {
-    margin-top: 11px;
-
-    padding:
-      9px
-      10px;
-
-    font-size: 7px;
-  }
-
-  .reviewActions {
+  .reviewTopBar {
     grid-template-columns:
-      0.8fr
-      1.2fr;
+      40px
+      minmax(0, 1fr)
+      40px;
 
     gap: 8px;
 
-    margin-top: 12px;
-  }
-
-  .retakeButton,
-  .aiReviewButton {
-    min-height: 42px;
+    margin-bottom: 9px;
 
     padding:
       0
-      10px;
-
-    font-size: 8px;
+      4px;
   }
 
-  .trustRow {
-    gap: 9px;
+  .reviewBackButton {
+    width: 38px;
+    height: 38px;
 
-    margin-top: 13px;
+    background:
+      rgba(255, 255, 255, 0.08);
+  }
+
+  .reviewHeading strong {
+    font-size: 14px;
+  }
+
+  .reviewHeading span {
+    font-size: 9.5px;
+  }
+
+  .reviewCard {
+    padding: 5px;
+
+    border-radius: 20px;
+  }
+
+  .reviewBottom {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
 
     padding:
-      0
-      8px;
+      11px
+      5px
+      5px;
   }
 
-  .trustItem {
-    font-size: 6.7px;
+  .reviewPrivacy {
+    justify-content: center;
+
+    font-size: 9px;
+
+    text-align: center;
   }
 
-  .trustDivider {
-    height: 13px;
+  .retakeButton {
+    width: 100%;
+
+    min-height: 44px;
+
+    font-size: 12px;
   }
 }
 
@@ -790,49 +640,27 @@
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 430px) {
-  .container {
-    width:
-      calc(100% - 8px);
+@media (max-width: 390px) {
+  .cameraShell {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
-  .header {
-    margin-bottom: 12px;
+  .cameraPrompt strong {
+    font-size: 13px;
   }
 
-  .title {
-    font-size: 25px;
+  .cameraPrompt span {
+    font-size: 9px;
   }
 
-  .description {
-    font-size: 7.8px;
+  .cameraPrivacy {
+    font-size: 8.5px;
   }
 
-  .reviewDetails {
-    padding: 12px;
-  }
-
-  .reviewActions {
-    grid-template-columns: 1fr;
-  }
-
-  .retakeButton,
-  .aiReviewButton {
-    width: 100%;
-  }
-
-  .trustRow {
-    display: grid;
-
-    grid-template-columns: 1fr;
-
-    justify-items: center;
-
-    gap: 6px;
-  }
-
-  .trustDivider {
-    display: none;
+  .reviewContainer {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 
@@ -840,31 +668,29 @@
    SHORT MOBILE
 ========================================================= */
 
-@media (max-width: 640px) and (max-height: 760px) {
-  .container {
-    padding-top: 10px;
+@media (
+  max-width: 640px
+) and (
+  max-height: 720px
+) {
+  .cameraShell {
+    padding-top:
+      calc(
+        6px +
+        env(safe-area-inset-top)
+      );
   }
 
-  .header {
-    margin-bottom: 10px;
+  .cameraTopBar {
+    margin-bottom: 5px;
   }
 
-  .eyebrow {
-    min-height: 23px;
+  .cameraPrompt span {
+    display: none;
   }
 
-  .title {
-    margin-top: 7px;
-
-    font-size: 23px;
-  }
-
-  .description {
+  .cameraPrivacy {
     margin-top: 5px;
-  }
-
-  .trustRow {
-    margin-top: 9px;
   }
 }
 
@@ -873,15 +699,18 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .retakeButton,
-  .aiReviewButton {
+  .backButton,
+  .reviewBackButton,
+  .retakeButton {
     transition: none;
   }
 
+  .backButton:hover,
+  .backButton:active,
+  .reviewBackButton:hover,
+  .reviewBackButton:active,
   .retakeButton:hover,
-  .retakeButton:active,
-  .aiReviewButton:hover,
-  .aiReviewButton:active {
+  .retakeButton:active {
     transform: none;
   }
 }
