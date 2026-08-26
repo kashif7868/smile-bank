@@ -10,7 +10,7 @@ export default function HeaderActions() {
   return (
     <div className={styles.headerActions}>
       <Link
-        href="/sign-in"
+        href="/auth?mode=sign-in"
         className={styles.signInButton}
         aria-label="Sign in to Smile Bank"
       >
@@ -25,7 +25,7 @@ export default function HeaderActions() {
       </Link>
 
       <Link
-        href="/open-account"
+        href="/auth?mode=sign-up"
         className={styles.openAccountButton}
         aria-label="Open your Smile Bank account"
       >

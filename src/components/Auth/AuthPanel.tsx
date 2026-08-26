@@ -1,241 +1,338 @@
 "use client";
 
 import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
-import Link from "next/link";
+  ArrowLeft,
+  LogIn,
+  Sparkles,
+  UserPlus,
+} from "lucide-react";
 import {
-  usePathname,
   useRouter,
   useSearchParams,
 } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import SocialAuthButtons from "./SocialAuthButtons";
 
-import styles from "@/components/animations/css/Auth/AuthPanel.module.css";
+import styles from "@/components/animations/css/auth/AuthPanel.module.css";
 
-type AuthMode = "login" | "register" | "forgot";
+export type AuthMode =
+  | "sign-in"
+  | "sign-up"
+  | "forgot-password";
 
-const AuthPanel = () => {
-  const shouldReduceMotion = useReducedMotion();
+interface AuthPanelProps {
+  initialMode?: AuthMode;
+  redirectPath?: string;
+}
+
+const modeContent: Record<
+  AuthMode,
+  {
+    eyebrow: string;
+    title: string;
+    description: string;
+  }
+> = {
+  "sign-in": {
+    eyebrow: "Welcome back",
+    title: "Sign in to Smile Bank",
+    description:
+      "Access your private Smile Vault and continue preserving the moments that matter.",
+  },
+
+  "sign-up": {
+    eyebrow: "Create your vault",
+    title: "Open your Smile Bank",
+    description:
+      "Create your private account and start preserving meaningful smiles in one secure place.",
+  },
+
+  "forgot-password": {
+    eyebrow: "Account recovery",
+    title: "Reset your password",
+    description:
+      "Enter your email and we’ll help you securely regain access to your Smile Bank.",
+  },
+};
+
+export default function AuthPanel({
+  initialMode = "sign-in",
+  redirectPath,
+}: AuthPanelProps) {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [mode, setMode] = useState<AuthMode>("login");
+  const [mode, setMode] =
+    useState<AuthMode>(initialMode);
 
-  useEffect(() => {
-    const requestedMode = searchParams.get("mode");
-
-    if (requestedMode === "register") {
-      setMode("register");
-      return;
-    }
-
-    if (requestedMode === "forgot") {
-      setMode("forgot");
-      return;
-    }
-
-    setMode("login");
-  }, [searchParams]);
-
-  const changeMode = (nextMode: AuthMode) => {
+  const updateMode = (
+    nextMode: AuthMode,
+  ) => {
     setMode(nextMode);
 
-    const params = new URLSearchParams(
-      searchParams.toString()
-    );
+    const params =
+      new URLSearchParams(
+        searchParams.toString(),
+      );
 
-    if (nextMode === "login") {
-      params.delete("mode");
-    } else {
-      params.set("mode", nextMode);
+    params.set("mode", nextMode);
+
+    if (redirectPath) {
+      params.set(
+        "redirect",
+        redirectPath,
+      );
     }
 
-    const query = params.toString();
-
     router.replace(
-      query ? `${pathname}?${query}` : pathname,
+      `/auth?${params.toString()}`,
       {
         scroll: false,
-      }
+      },
     );
   };
 
-  const motionProps = shouldReduceMotion
-    ? {}
-    : {
-        initial: {
-          opacity: 0,
-          y: 8,
-        },
-        animate: {
-          opacity: 1,
-          y: 0,
-        },
-        exit: {
-          opacity: 0,
-          y: -6,
-        },
-        transition: {
-          duration: 0.2,
-          ease: [0.22, 1, 0.36, 1] as const,
-        },
-      };
+  const content = modeContent[mode];
+
+  const isForgotPassword =
+    mode === "forgot-password";
 
   return (
-    <div className={styles.authPanelShell}>
-      <Link
-        href="/"
-        className={styles.authPanelBrand}
-        aria-label="CoinHeritage home"
-      >
-        <div className={styles.authPanelBrandCoin}>
-          CH
-        </div>
+    <div className={styles.panel}>
+      {/* ===============================================
+          HEADER
+      ================================================ */}
 
-        <div className={styles.authPanelBrandText}>
-          <div className={styles.authPanelBrandName}>
-            Coin
-            <span>Heritage</span>
-          </div>
+      <div className={styles.header}>
+        {isForgotPassword ? (
+          <button
+            type="button"
+            className={styles.backButton}
+            onClick={() =>
+              updateMode("sign-in")
+            }
+          >
+            <ArrowLeft
+              size={15}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
 
-          <div className={styles.authPanelBrandTagline}>
-            Discover. Collect. Own History.
-          </div>
-        </div>
-      </Link>
-
-      <div className={styles.authPanelCard}>
-        {mode !== "forgot" && (
-          <div className={styles.authPanelTabs}>
-            <button
-              type="button"
-              onClick={() => changeMode("login")}
-              className={`${styles.authPanelTab} ${
-                mode === "login"
-                  ? styles.authPanelTabActive
-                  : ""
-              }`}
+            <span>
+              Back to sign in
+            </span>
+          </button>
+        ) : (
+          <div className={styles.eyebrow}>
+            <span
+              className={
+                styles.eyebrowIcon
+              }
             >
-              Sign In
-            </button>
+              <Sparkles
+                size={14}
+                strokeWidth={2}
+                aria-hidden="true"
+              />
+            </span>
 
-            <button
-              type="button"
-              onClick={() => changeMode("register")}
-              className={`${styles.authPanelTab} ${
-                mode === "register"
-                  ? styles.authPanelTabActive
-                  : ""
-              }`}
-            >
-              Create Account
-            </button>
+            <span>
+              {content.eyebrow}
+            </span>
           </div>
         )}
 
-        <div className={styles.authPanelBody}>
-          <AnimatePresence mode="wait">
-            {mode === "login" && (
-              <motion.div
-                key="login"
-                {...motionProps}
-                className={styles.authPanelMode}
-              >
-                <div className={styles.authPanelIntro}>
-                  <h1 className={styles.authPanelTitle}>
-                    Welcome Back
-                  </h1>
+        <h2 className={styles.title}>
+          {content.title}
+        </h2>
 
-                  <p className={styles.authPanelDescription}>
-                    Sign in to access your collection,
-                    wishlist, cart and auctions.
-                  </p>
-                </div>
-
-                <SocialAuthButtons />
-
-                <LoginForm
-                  onForgotPassword={() =>
-                    changeMode("forgot")
-                  }
-                />
-
-                <div className={styles.authPanelSwitchRow}>
-                  Don&apos;t have an account?{" "}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      changeMode("register")
-                    }
-                  >
-                    Create Account
-                  </button>
-                </div>
-              </motion.div>
-            )}
-
-            {mode === "register" && (
-              <motion.div
-                key="register"
-                {...motionProps}
-                className={styles.authPanelMode}
-              >
-                <div className={styles.authPanelIntro}>
-                  <h1 className={styles.authPanelTitle}>
-                    Create Your Account
-                  </h1>
-
-                  <p className={styles.authPanelDescription}>
-                    Join CoinHeritage to collect, discover,
-                    buy and sell remarkable coins.
-                  </p>
-                </div>
-
-                <SocialAuthButtons />
-
-                <RegisterForm />
-
-                <div className={styles.authPanelSwitchRow}>
-                  Already have an account?{" "}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      changeMode("login")
-                    }
-                  >
-                    Sign In
-                  </button>
-                </div>
-              </motion.div>
-            )}
-
-            {mode === "forgot" && (
-              <motion.div
-                key="forgot"
-                {...motionProps}
-                className={styles.authPanelMode}
-              >
-                <ForgotPasswordForm
-                  onBackToLogin={() =>
-                    changeMode("login")
-                  }
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <p
+          className={
+            styles.description
+          }
+        >
+          {content.description}
+        </p>
       </div>
+
+      {/* ===============================================
+          SIGN IN / SIGN UP SWITCH
+      ================================================ */}
+
+      {!isForgotPassword && (
+        <div
+          className={styles.modeSwitch}
+          role="tablist"
+          aria-label="Account access options"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={
+              mode === "sign-in"
+            }
+            className={`${styles.modeButton} ${
+              mode === "sign-in"
+                ? styles.modeButtonActive
+                : ""
+            }`}
+            onClick={() =>
+              updateMode("sign-in")
+            }
+          >
+            <LogIn
+              size={15}
+              strokeWidth={1.9}
+              aria-hidden="true"
+            />
+
+            <span>
+              Sign in
+            </span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected={
+              mode === "sign-up"
+            }
+            className={`${styles.modeButton} ${
+              mode === "sign-up"
+                ? styles.modeButtonActive
+                : ""
+            }`}
+            onClick={() =>
+              updateMode("sign-up")
+            }
+          >
+            <UserPlus
+              size={15}
+              strokeWidth={1.9}
+              aria-hidden="true"
+            />
+
+            <span>
+              Sign up
+            </span>
+          </button>
+        </div>
+      )}
+
+      {/* ===============================================
+          AUTH CONTENT
+      ================================================ */}
+
+      <div className={styles.formArea}>
+        {mode === "sign-in" && (
+          <>
+            <SocialAuthButtons
+              mode="sign-in"
+            />
+
+            <div
+              className={styles.divider}
+            >
+              <span />
+
+              <small>
+                or continue with email
+              </small>
+
+              <span />
+            </div>
+
+            <LoginForm
+              redirectPath={
+                redirectPath
+              }
+              onForgotPassword={() =>
+                updateMode(
+                  "forgot-password",
+                )
+              }
+              onCreateAccount={() =>
+                updateMode("sign-up")
+              }
+            />
+          </>
+        )}
+
+        {mode === "sign-up" && (
+          <>
+            <SocialAuthButtons
+              mode="sign-up"
+            />
+
+            <div
+              className={styles.divider}
+            >
+              <span />
+
+              <small>
+                or create with email
+              </small>
+
+              <span />
+            </div>
+
+            <RegisterForm
+              redirectPath={
+                redirectPath
+              }
+              onSignIn={() =>
+                updateMode("sign-in")
+              }
+            />
+          </>
+        )}
+
+        {mode ===
+          "forgot-password" && (
+          <ForgotPasswordForm
+            onBackToSignIn={() =>
+              updateMode("sign-in")
+            }
+          />
+        )}
+      </div>
+
+      {/* ===============================================
+          BOTTOM SWITCH
+      ================================================ */}
+
+      {!isForgotPassword && (
+        <div
+          className={
+            styles.bottomSwitch
+          }
+        >
+          <span>
+            {mode === "sign-in"
+              ? "New to Smile Bank?"
+              : "Already have an account?"}
+          </span>
+
+          <button
+            type="button"
+            onClick={() =>
+              updateMode(
+                mode === "sign-in"
+                  ? "sign-up"
+                  : "sign-in",
+              )
+            }
+          >
+            {mode === "sign-in"
+              ? "Create account"
+              : "Sign in"}
+          </button>
+        </div>
+      )}
     </div>
   );
-};
-
-export default AuthPanel;
+}

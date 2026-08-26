@@ -989,111 +989,176 @@
     margin: 0 auto;
   }
 }
-
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 640px) {
   .container {
-    width:
-      calc(100% - 28px);
+    width: calc(100% - 28px);
 
-    gap: 36px;
+    gap: 30px;
 
     padding:
-      42px
+      30px
       0
-      48px;
+      calc(
+        104px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .backgroundGlowOne {
+    top: -190px;
+    right: -240px;
+
+    width: 500px;
+    height: 500px;
+  }
+
+  .backgroundGlowTwo {
+    left: -310px;
+    bottom: -320px;
+
+    width: 560px;
+    height: 560px;
   }
 
   .backgroundPattern {
-    opacity: 0.28;
+    opacity: 0.24;
   }
+
+  /* -------------------------------------------------------
+     EYEBROW
+  ------------------------------------------------------- */
 
   .eyebrow {
-    min-height: 31px;
+    min-height: 30px;
 
-    gap: 6px;
+    gap: 5px;
 
-    padding:
-      0
-      10px;
+    padding: 0 9px;
 
-    font-size: 8px;
+    font-size: 7.5px;
+
+    box-shadow:
+      0 5px 15px
+      rgba(7, 63, 60, 0.04);
   }
 
+  .eyebrowIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* -------------------------------------------------------
+     TITLE
+  ------------------------------------------------------- */
+
   .title {
-    margin-top: 16px;
+    max-width: 470px;
+
+    margin-top: 15px;
 
     font-size:
       clamp(
-        37px,
-        10.8vw,
-        48px
+        34px,
+        9.4vw,
+        42px
       );
 
-    line-height: 1.02;
+    line-height: 0.99;
 
-    letter-spacing: -0.05em;
+    letter-spacing: -0.052em;
   }
 
   .title span {
-    margin-top: 7px;
+    margin-top: 5px;
   }
+
+  /* -------------------------------------------------------
+     DESCRIPTION
+  ------------------------------------------------------- */
 
   .description {
-    margin-top: 18px;
+    max-width: 455px;
 
-    font-size: 14px;
+    margin-top: 16px;
 
-    line-height: 1.63;
+    font-size: 13px;
+    line-height: 1.56;
   }
 
-  .actions {
-    width: 100%;
+  /* -------------------------------------------------------
+     ACTIONS
+  ------------------------------------------------------- */
 
+  .actions {
     display: grid;
 
     grid-template-columns: 1fr;
 
-    gap: 9px;
+    width: 100%;
 
-    margin-top: 25px;
+    gap: 8px;
+
+    margin-top: 21px;
   }
 
   .primaryButton,
   .secondaryButton {
     width: 100%;
 
-    min-height: 51px;
+    min-height: 48px;
+
+    padding: 0 17px;
+
+    border-radius: 14px;
+
+    font-size: 12px;
   }
 
-  .trustRow {
-    width: 100%;
+  .primaryButtonIcon {
+    width: 29px;
+    height: 29px;
 
+    border-radius: 9px;
+  }
+
+  /* -------------------------------------------------------
+     TRUST
+  ------------------------------------------------------- */
+
+  .trustRow {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
 
-    gap: 8px;
+    width: 100%;
 
-    margin-top: 19px;
+    gap: 7px;
+
+    margin-top: 14px;
   }
 
   .trustItem {
-    align-items: flex-start;
+    min-width: 0;
 
-    padding: 9px;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px;
 
     background:
-      rgba(255, 255, 255, 0.58);
+      rgba(255, 255, 255, 0.62);
 
     border:
       1px solid
       var(--smile-border-soft);
 
-    border-radius: 12px;
+    border-radius: 11px;
   }
 
   .trustDivider {
@@ -1101,20 +1166,44 @@
   }
 
   .trustIcon {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+
+    border-radius: 9px;
+  }
+
+  .trustText {
+    min-width: 0;
   }
 
   .trustText strong {
-    font-size: 9px;
+    overflow: hidden;
+
+    font-size: 8.5px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .trustText small {
-    font-size: 7px;
+    overflow: hidden;
+
+    font-size: 6.8px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
+  /* -------------------------------------------------------
+     VISUAL
+  ------------------------------------------------------- */
+
   .visual {
-    min-height: 390px;
+    width: 100%;
+
+    min-height: 370px;
+
+    margin-top: 2px;
   }
 
   .previewWrapper {
@@ -1132,41 +1221,68 @@
     transform: none;
   }
 
-  .visualAccent {
-    width: 260px;
-    height: 260px;
-
-    border-radius: 70px;
+  .visualHalo {
+    width: 390px;
+    height: 390px;
   }
 
+  .visualAccent {
+    width: 250px;
+    height: 250px;
+
+    right: 4%;
+    bottom: 7%;
+
+    border-radius: 68px;
+  }
+
+  /* -------------------------------------------------------
+     FLOATING BADGES
+  ------------------------------------------------------- */
+
   .aiBadge {
-    top: 8px;
-    right: -3px;
+    top: 5px;
+    right: 0;
 
-    width: 185px;
+    width: 178px;
 
-    transform:
-      scale(0.92);
+    padding: 9px 10px;
 
+    transform: scale(0.91);
     transform-origin: top right;
   }
 
   .privacyBadge {
-    left: -3px;
-    bottom: 8px;
+    left: 0;
+    bottom: 5px;
 
-    width: 185px;
+    width: 178px;
 
-    transform:
-      scale(0.92);
+    padding: 9px 10px;
 
+    transform: scale(0.91);
     transform-origin: bottom left;
   }
 
   .aiBadge:hover,
   .privacyBadge:hover {
-    transform:
-      scale(0.92);
+    transform: scale(0.91);
+  }
+
+  .aiBadgeIcon,
+  .privacyBadgeIcon {
+    width: 31px;
+    height: 31px;
+
+    border-radius: 10px;
+  }
+
+  .badgeContent strong {
+    font-size: 10px;
+  }
+
+  .badgeContent small {
+    font-size: 7px;
   }
 }
 
@@ -1176,35 +1292,88 @@
 
 @media (max-width: 430px) {
   .container {
-    width:
-      calc(100% - 22px);
+    width: calc(100% - 22px);
 
-    padding-top: 36px;
+    gap: 27px;
+
+    padding:
+      27px
+      0
+      calc(
+        100px +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .eyebrow {
+    min-height: 29px;
+
+    font-size: 7px;
   }
 
   .title {
-    font-size: 37px;
+    max-width: 390px;
+
+    margin-top: 14px;
+
+    font-size: 35px;
+
+    line-height: 1;
+  }
+
+  .title span {
+    margin-top: 4px;
   }
 
   .description {
-    font-size: 13px;
+    max-width: 390px;
+
+    margin-top: 15px;
+
+    font-size: 12px;
+    line-height: 1.54;
+  }
+
+  .actions {
+    margin-top: 19px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 47px;
   }
 
   .trustRow {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    margin-top: 12px;
   }
 
   .trustItem {
-    align-items: center;
+    padding: 7px;
+  }
+
+  .trustIcon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .trustText strong {
+    font-size: 8px;
+  }
+
+  .trustText small {
+    display: none;
   }
 
   .visual {
-    min-height: 355px;
+    min-height: 345px;
   }
 
   .aiBadge,
   .privacyBadge {
-    width: 168px;
+    width: 164px;
   }
 
   .badgeContent small {
@@ -1213,12 +1382,59 @@
 }
 
 /* =========================================================
+   SHORT MOBILE SCREENS
+========================================================= */
+
+@media (max-width: 640px) and (max-height: 760px) {
+  .container {
+    padding-top: 22px;
+  }
+
+  .eyebrow {
+    min-height: 28px;
+  }
+
+  .title {
+    margin-top: 12px;
+
+    font-size: 33px;
+  }
+
+  .description {
+    margin-top: 13px;
+
+    line-height: 1.48;
+  }
+
+  .actions {
+    margin-top: 17px;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 45px;
+  }
+
+  .trustRow {
+    margin-top: 10px;
+  }
+
+  .trustItem {
+    padding: 6px 7px;
+  }
+}
+
+/* =========================================================
    VERY SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 350px) {
+  .container {
+    width: calc(100% - 18px);
+  }
+
   .title {
-    font-size: 33px;
+    font-size: 31px;
   }
 
   .eyebrowAccent,
@@ -1226,17 +1442,30 @@
     display: none;
   }
 
+  .description {
+    font-size: 11.5px;
+  }
+
+  .trustRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trustIcon {
+    width: 25px;
+    height: 25px;
+  }
+
   .aiBadge,
   .privacyBadge {
-    width: 155px;
+    width: 148px;
 
-    padding: 9px;
+    padding: 8px;
   }
 
   .aiBadgeIcon,
   .privacyBadgeIcon {
-    width: 30px;
-    height: 30px;
+    width: 29px;
+    height: 29px;
   }
 }
 

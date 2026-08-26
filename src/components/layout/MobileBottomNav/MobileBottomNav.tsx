@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+} from "next/navigation";
+
 import {
   Award,
   Camera,
@@ -65,11 +69,17 @@ export default function MobileBottomNav() {
     (state) => state.isAuthenticated,
   );
 
+  const isMobileMenuOpen = useUIStore(
+    (state) => state.isMobileMenuOpen,
+  );
+
   const openAuthRequired = useUIStore(
     (state) => state.openAuthRequired,
   );
 
-  const isActiveRoute = (href: string) => {
+  const isActiveRoute = (
+    href: string,
+  ) => {
     if (href === "/") {
       return pathname === "/";
     }
@@ -91,6 +101,10 @@ export default function MobileBottomNav() {
     router.push(href);
   };
 
+  if (isMobileMenuOpen) {
+    return null;
+  }
+
   return (
     <nav
       className={styles.nav}
@@ -99,9 +113,9 @@ export default function MobileBottomNav() {
       <div className={styles.inner}>
         {navigationItems.map((item) => {
           const Icon = item.icon;
-          const isActive = isActiveRoute(
-            item.href,
-          );
+
+          const isActive =
+            isActiveRoute(item.href);
 
           if (item.primary) {
             return (
@@ -132,20 +146,24 @@ export default function MobileBottomNav() {
                       : ""
                   }`}
                 >
-                  <Camera
+                  <Icon
                     size={25}
                     strokeWidth={2.1}
                     aria-hidden="true"
                   />
 
                   <span
-                    className={styles.primaryGlow}
+                    className={
+                      styles.primaryGlow
+                    }
                     aria-hidden="true"
                   />
                 </span>
 
                 <span
-                  className={styles.primaryLabel}
+                  className={
+                    styles.primaryLabel
+                  }
                 >
                   {item.label}
                 </span>
@@ -177,7 +195,9 @@ export default function MobileBottomNav() {
                   <Icon
                     size={20}
                     strokeWidth={1.85}
-                    className={styles.icon}
+                    className={
+                      styles.icon
+                    }
                     aria-hidden="true"
                   />
                 </span>
@@ -239,7 +259,9 @@ export default function MobileBottomNav() {
 
               {isActive && (
                 <span
-                  className={styles.activeDot}
+                  className={
+                    styles.activeDot
+                  }
                   aria-hidden="true"
                 />
               )}

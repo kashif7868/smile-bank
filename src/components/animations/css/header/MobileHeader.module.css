@@ -78,12 +78,18 @@
 
   top: var(--header-height);
   right: 0;
-  bottom: 0;
   left: 0;
 
   z-index: calc(var(--z-header) + 2);
 
+  width: 100%;
+  height: calc(
+    100dvh - var(--header-height)
+  );
+
   visibility: hidden;
+
+  overflow: hidden;
 
   pointer-events: none;
 
@@ -127,25 +133,36 @@
 
 .menuPanel {
   position: relative;
+  z-index: 2;
 
   width: min(
     calc(100% - 18px),
     540px
   );
 
-  max-height:
-    calc(
-      100dvh -
-      var(--header-height) -
-      12px
-    );
+  max-height: calc(
+    100dvh -
+    var(--header-height) -
+    14px
+  );
 
   margin: 7px auto 0;
 
-  padding: 18px;
+  padding:
+    18px
+    18px
+    max(
+      18px,
+      env(safe-area-inset-bottom)
+    );
 
+  overflow-x: hidden;
   overflow-y: auto;
+
   overscroll-behavior: contain;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   background:
     linear-gradient(
@@ -154,13 +171,17 @@
       rgba(248, 252, 251, 0.995) 100%
     );
 
-  border: 1px solid rgba(220, 233, 230, 0.92);
+  border:
+    1px solid
+    rgba(220, 233, 230, 0.92);
 
   border-radius: 24px;
 
   box-shadow:
-    0 30px 80px rgba(7, 63, 60, 0.2),
-    0 8px 24px rgba(7, 63, 60, 0.08);
+    0 30px 80px
+    rgba(7, 63, 60, 0.2),
+    0 8px 24px
+    rgba(7, 63, 60, 0.08);
 
   transform:
     translateY(-12px)
@@ -170,6 +191,13 @@
 
   transition:
     transform var(--transition-normal);
+}
+
+.menuPanel::-webkit-scrollbar {
+  display: none;
+
+  width: 0;
+  height: 0;
 }
 
 .mobileMenuOpen .menuPanel {
@@ -191,16 +219,18 @@
 
   padding-bottom: 15px;
 
-  border-bottom: 1px solid var(--smile-border-soft);
+  border-bottom:
+    1px solid
+    var(--smile-border-soft);
 }
 
 .menuHeading {
   display: flex;
   flex-direction: column;
 
-  gap: 4px;
-
   min-width: 0;
+
+  gap: 4px;
 }
 
 .menuEyebrow {
@@ -227,12 +257,13 @@
 
 .privateBadge {
   display: inline-flex;
+
+  min-height: 29px;
+
   align-items: center;
   justify-content: center;
 
   gap: 6px;
-
-  min-height: 29px;
 
   padding: 0 10px;
 
@@ -247,9 +278,12 @@
       #f5fbf9
     );
 
-  border: 1px solid rgba(15, 122, 114, 0.1);
+  border:
+    1px solid
+    rgba(15, 122, 114, 0.1);
 
-  border-radius: var(--radius-pill);
+  border-radius:
+    var(--radius-pill);
 
   font-size: 10px;
   font-weight: 800;
@@ -284,12 +318,15 @@
       #fffaf0 100%
     );
 
-  border: 1px solid rgba(247, 198, 83, 0.42);
+  border:
+    1px solid
+    rgba(247, 198, 83, 0.42);
 
   border-radius: 18px;
 
   box-shadow:
-    0 8px 24px rgba(247, 198, 83, 0.09);
+    0 8px 24px
+    rgba(247, 198, 83, 0.09);
 
   transition:
     transform var(--transition-fast),
@@ -298,10 +335,12 @@
 }
 
 .depositCard:hover {
-  border-color: rgba(247, 198, 83, 0.7);
+  border-color:
+    rgba(247, 198, 83, 0.7);
 
   box-shadow:
-    0 12px 30px rgba(247, 198, 83, 0.15);
+    0 12px 30px
+    rgba(247, 198, 83, 0.15);
 
   transform: translateY(-1px);
 }
@@ -311,6 +350,8 @@
 
   width: 44px;
   height: 44px;
+
+  flex-shrink: 0;
 
   align-items: center;
   justify-content: center;
@@ -327,7 +368,8 @@
   border-radius: 14px;
 
   box-shadow:
-    0 8px 20px rgba(15, 122, 114, 0.18);
+    0 8px 20px
+    rgba(15, 122, 114, 0.18);
 }
 
 .depositContent {
@@ -395,7 +437,7 @@
   display: flex;
   flex-direction: column;
 
-  margin-top: 10px;
+  margin-top: 9px;
 }
 
 .navigationItem {
@@ -410,11 +452,13 @@
 
   gap: 11px;
 
-  min-height: 62px;
+  min-height: 60px;
 
-  padding: 7px 4px;
+  padding: 6px 4px;
 
-  border-bottom: 1px solid var(--smile-border-soft);
+  border-bottom:
+    1px solid
+    var(--smile-border-soft);
 
   border-radius: 12px;
 
@@ -428,7 +472,8 @@
   padding-right: 8px;
   padding-left: 8px;
 
-  background: rgba(242, 250, 248, 0.72);
+  background:
+    rgba(242, 250, 248, 0.72);
 }
 
 .navigationItem:active {
@@ -440,6 +485,8 @@
 
   width: 38px;
   height: 38px;
+
+  flex-shrink: 0;
 
   align-items: center;
   justify-content: center;
@@ -453,7 +500,9 @@
       #ffffff
     );
 
-  border: 1px solid var(--smile-border-soft);
+  border:
+    1px solid
+    var(--smile-border-soft);
 
   border-radius: 12px;
 
@@ -475,7 +524,8 @@
     );
 
   box-shadow:
-    0 7px 18px rgba(15, 122, 114, 0.15);
+    0 7px 18px
+    rgba(15, 122, 114, 0.15);
 
   transform: translateY(-1px);
 }
@@ -531,18 +581,21 @@
 
 .accountActions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr
+    1fr;
 
   gap: 10px;
 
-  margin-top: 17px;
+  margin-top: 15px;
 }
 
 .signInButton,
 .openAccountButton {
   display: inline-flex;
 
-  min-height: 47px;
+  min-height: 45px;
 
   align-items: center;
   justify-content: center;
@@ -570,16 +623,20 @@
 
   background: #ffffff;
 
-  border: 1px solid var(--smile-border);
+  border:
+    1px solid
+    var(--smile-border);
 }
 
 .signInButton:hover {
   color: var(--smile-green-dark);
 
-  border-color: rgba(15, 122, 114, 0.24);
+  border-color:
+    rgba(15, 122, 114, 0.24);
 
   box-shadow:
-    0 6px 18px rgba(7, 63, 60, 0.06);
+    0 6px 18px
+    rgba(7, 63, 60, 0.06);
 }
 
 .openAccountButton {
@@ -592,15 +649,19 @@
       var(--smile-yellow)
     );
 
-  border: 1px solid rgba(239, 185, 60, 0.62);
+  border:
+    1px solid
+    rgba(239, 185, 60, 0.62);
 
   box-shadow:
-    0 7px 18px rgba(247, 198, 83, 0.2);
+    0 7px 18px
+    rgba(247, 198, 83, 0.2);
 }
 
 .openAccountButton:hover {
   box-shadow:
-    0 10px 24px rgba(247, 198, 83, 0.28);
+    0 10px 24px
+    rgba(247, 198, 83, 0.28);
 
   transform: translateY(-1px);
 }
@@ -620,8 +681,8 @@
 
   gap: 9px;
 
-  margin-top: 14px;
-  padding: 11px 12px;
+  margin-top: 12px;
+  padding: 10px 11px;
 
   background:
     linear-gradient(
@@ -630,7 +691,9 @@
       #f8fcfb
     );
 
-  border: 1px solid var(--smile-border-soft);
+  border:
+    1px solid
+    var(--smile-border-soft);
 
   border-radius: 14px;
 }
@@ -648,7 +711,7 @@
 
   color: var(--smile-text-secondary);
 
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1.5;
 }
 
@@ -665,17 +728,77 @@
   }
 
   .menuPanel {
-    width: calc(100% - 14px);
+    width:
+      calc(100% - 14px);
+
+    max-height:
+      calc(
+        100dvh -
+        var(--header-height) -
+        10px
+      );
 
     margin-top: 5px;
 
-    padding: 16px;
+    padding:
+      15px
+      15px
+      max(
+        15px,
+        env(safe-area-inset-bottom)
+      );
 
     border-radius: 21px;
   }
 
+  .menuHeader {
+    padding-bottom: 13px;
+  }
+
+  .depositCard {
+    margin-top: 13px;
+
+    padding: 12px;
+
+    border-radius: 16px;
+  }
+
+  .depositIcon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+  }
+
+  .mobileNavigation {
+    margin-top: 7px;
+  }
+
   .navigationItem {
-    min-height: 60px;
+    min-height: 55px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .navigationIcon {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 11px;
+  }
+
+  .accountActions {
+    margin-top: 13px;
+  }
+
+  .signInButton,
+  .openAccountButton {
+    min-height: 43px;
+  }
+
+  .securityNote {
+    margin-top: 11px;
   }
 }
 
@@ -688,8 +811,36 @@
     font-size: 17px;
   }
 
+  .depositContent > span:last-child {
+    font-size: 9px;
+  }
+
+  .navigationContent strong {
+    font-size: 12px;
+  }
+
+  .navigationContent span {
+    font-size: 8.5px;
+  }
+}
+
+/* =========================================================
+   NARROW MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
   .accountActions {
     grid-template-columns: 1fr;
+  }
+
+  .privateBadge {
+    padding: 0 8px;
+
+    font-size: 9px;
+  }
+
+  .securityNote {
+    padding: 9px 10px;
   }
 }
 
@@ -704,17 +855,80 @@
   }
 
   .menuPanel {
-    padding: 14px;
+    padding:
+      13px
+      13px
+      max(
+        13px,
+        env(safe-area-inset-bottom)
+      );
   }
 
-  .privateBadge {
-    padding: 0 8px;
+  .menuHeader {
+    gap: 10px;
+  }
 
-    font-size: 9px;
+  .depositCard {
+    gap: 9px;
+
+    padding: 11px;
+  }
+
+  .depositArrow {
+    display: none;
   }
 
   .navigationContent span {
     font-size: 8px;
+  }
+}
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+========================================================= */
+
+@media (max-height: 720px) and (max-width: 900px) {
+  .menuPanel {
+    padding-top: 13px;
+  }
+
+  .menuHeader {
+    padding-bottom: 11px;
+  }
+
+  .depositCard {
+    margin-top: 10px;
+
+    padding: 10px 12px;
+  }
+
+  .depositIcon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .navigationItem {
+    min-height: 49px;
+  }
+
+  .navigationIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .accountActions {
+    margin-top: 10px;
+  }
+
+  .signInButton,
+  .openAccountButton {
+    min-height: 40px;
+  }
+
+  .securityNote {
+    margin-top: 9px;
+
+    padding: 8px 10px;
   }
 }
 
@@ -734,5 +948,12 @@
   .signInButton,
   .openAccountButton {
     transition: none;
+  }
+
+  .depositCard:hover,
+  .navigationItem:active,
+  .signInButton:active,
+  .openAccountButton:active {
+    transform: none;
   }
 }

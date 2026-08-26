@@ -1,92 +1,82 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
-import { Sparkles } from "lucide-react";
+import {
+  LockKeyhole,
+  ShieldCheck,
+} from "lucide-react";
 
-import styles from "@/components/animations/css/Auth/AuthCard.module.css";
+import AuthPanel from "./AuthPanel";
+
+import styles from "@/components/animations/css/auth/AuthCard.module.css";
+
+type AuthMode =
+  | "sign-in"
+  | "sign-up"
+  | "forgot-password";
 
 interface AuthCardProps {
-  title: string;
-  description: string;
-  children: ReactNode;
-  footerText?: string;
-  footerLinkText?: string;
-  footerHref?: string;
+  initialMode: AuthMode;
+  redirectPath?: string;
 }
 
-const AuthCard = ({
-  title,
-  description,
-  children,
-  footerText,
-  footerLinkText,
-  footerHref,
-}: AuthCardProps) => {
+export default function AuthCard({
+  initialMode,
+  redirectPath,
+}: AuthCardProps) {
   return (
-    <div className={styles.authCardWrapper}>
-      <div className={styles.authCard}>
-        <div className={styles.authCardBrandHeader}>
-          <Link
-            href="/"
-            className={styles.authCardBrandLink}
-            aria-label="CoinHeritage home"
-          >
-            <div className={styles.authCardLogo}>
-              <span>CH</span>
-            </div>
+    <div className={styles.card}>
+      <div
+        className={styles.glow}
+        aria-hidden="true"
+      />
 
-            <div className={styles.authCardBrandText}>
-              <p className={styles.authCardBrandName}>
-                Coin
-                <span>Heritage</span>
-              </p>
+      <div className={styles.cardHeader}>
+        <div className={styles.securityBadge}>
+          <span className={styles.securityIcon}>
+            <LockKeyhole
+              size={14}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
+          </span>
 
-              <p className={styles.authCardTagline}>
-                Discover. Collect. Own History.
-              </p>
-            </div>
-          </Link>
+          <span>
+            Secure account access
+          </span>
         </div>
 
-        <div className={styles.authCardContent}>
-          <div className={styles.authCardIntro}>
-            <div className={styles.authCardBadge}>
-              <Sparkles
-                size={12}
-                strokeWidth={1.8}
-              />
+        <div
+          className={styles.status}
+          aria-label="Private by default"
+        >
+          <span
+            className={styles.statusDot}
+            aria-hidden="true"
+          />
 
-              <span>CoinHeritage Account</span>
-            </div>
-
-            <h1 className={styles.authCardTitle}>
-              {title}
-            </h1>
-
-            <p className={styles.authCardDescription}>
-              {description}
-            </p>
-          </div>
-
-          {children}
+          <span>
+            Private
+          </span>
         </div>
+      </div>
 
-        {footerText &&
-          footerLinkText &&
-          footerHref && (
-            <div className={styles.authCardFooter}>
-              <span>{footerText} </span>
+      <div className={styles.panelWrapper}>
+        <AuthPanel
+          initialMode={initialMode}
+          redirectPath={redirectPath}
+        />
+      </div>
 
-              <Link
-                href={footerHref}
-                className={styles.authCardFooterLink}
-              >
-                {footerLinkText}
-              </Link>
-            </div>
-          )}
+      <div className={styles.cardFooter}>
+        <ShieldCheck
+          size={14}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
+
+        <p>
+          Your account, private smiles and sharing
+          choices stay under your control.
+        </p>
       </div>
     </div>
   );
-};
-
-export default AuthCard;
+}

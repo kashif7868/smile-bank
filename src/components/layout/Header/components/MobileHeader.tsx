@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
 import {
   Award,
   Camera,
@@ -18,6 +19,8 @@ import {
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
+
+import { useUIStore } from "@/store/uiStore";
 
 import styles from "@/components/animations/css/header/MobileHeader.module.css";
 
@@ -52,51 +55,83 @@ const mobileNavigationItems: MobileNavigationItem[] = [
 export default function MobileHeader() {
   const pathname = usePathname();
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMenuOpen = useUIStore(
+    (state) => state.isMobileMenuOpen,
+  );
 
-  const toggleMenu = () => {
-    setIsMenuOpen((currentState) => !currentState);
-  };
+  const toggleMobileMenu = useUIStore(
+    (state) => state.toggleMobileMenu,
+  );
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const closeMobileMenu = useUIStore(
+    (state) => state.closeMobileMenu,
+  );
 
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
+    closeMobileMenu();
+  }, [pathname, closeMobileMenu]);
 
   useEffect(() => {
     if (!isMenuOpen) {
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
+    const body = document.body;
+    const html = document.documentElement;
 
-    document.body.style.overflow = "hidden";
+    const previousBodyOverflow =
+      body.style.overflow;
 
-    const handleEscape = (event: KeyboardEvent) => {
+    const previousHtmlOverflow =
+      html.style.overflow;
+
+    const previousOverscrollBehavior =
+      body.style.overscrollBehavior;
+
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+
+    const handleEscape = (
+      event: KeyboardEvent,
+    ) => {
       if (event.key === "Escape") {
-        setIsMenuOpen(false);
+        closeMobileMenu();
       }
     };
 
-    window.addEventListener("keydown", handleEscape);
+    window.addEventListener(
+      "keydown",
+      handleEscape,
+    );
 
     return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleEscape);
+      body.style.overflow =
+        previousBodyOverflow;
+
+      html.style.overflow =
+        previousHtmlOverflow;
+
+      body.style.overscrollBehavior =
+        previousOverscrollBehavior;
+
+      window.removeEventListener(
+        "keydown",
+        handleEscape,
+      );
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, closeMobileMenu]);
 
   return (
     <div className={styles.mobileHeader}>
       <button
         type="button"
         className={`${styles.menuButton} ${
-          isMenuOpen ? styles.menuButtonOpen : ""
+          isMenuOpen
+            ? styles.menuButtonOpen
+            : ""
         }`}
-        onClick={toggleMenu}
+        onClick={toggleMobileMenu}
         aria-label={
           isMenuOpen
             ? "Close navigation menu"
@@ -123,14 +158,16 @@ export default function MobileHeader() {
       <div
         id="mobile-navigation-menu"
         className={`${styles.mobileMenu} ${
-          isMenuOpen ? styles.mobileMenuOpen : ""
+          isMenuOpen
+            ? styles.mobileMenuOpen
+            : ""
         }`}
         aria-hidden={!isMenuOpen}
       >
         <button
           type="button"
           className={styles.backdrop}
-          onClick={closeMenu}
+          onClick={closeMobileMenu}
           aria-label="Close navigation menu"
           tabIndex={isMenuOpen ? 0 : -1}
         />
@@ -138,16 +175,22 @@ export default function MobileHeader() {
         <div className={styles.menuPanel}>
           <div className={styles.menuHeader}>
             <div className={styles.menuHeading}>
-              <span className={styles.menuEyebrow}>
+              <span
+                className={styles.menuEyebrow}
+              >
                 Smile Bank
               </span>
 
-              <span className={styles.menuTitle}>
+              <span
+                className={styles.menuTitle}
+              >
                 Your smile space
               </span>
             </div>
 
-            <span className={styles.privateBadge}>
+            <span
+              className={styles.privateBadge}
+            >
               <LockKeyhole
                 size={12}
                 strokeWidth={2}
@@ -161,9 +204,11 @@ export default function MobileHeader() {
           <Link
             href="/capture"
             className={styles.depositCard}
-            onClick={closeMenu}
+            onClick={closeMobileMenu}
           >
-            <span className={styles.depositIcon}>
+            <span
+              className={styles.depositIcon}
+            >
               <Camera
                 size={21}
                 strokeWidth={2}
@@ -171,8 +216,12 @@ export default function MobileHeader() {
               />
             </span>
 
-            <span className={styles.depositContent}>
-              <span className={styles.depositTopline}>
+            <span
+              className={styles.depositContent}
+            >
+              <span
+                className={styles.depositTopline}
+              >
                 <Sparkles
                   size={12}
                   strokeWidth={2}
@@ -187,8 +236,8 @@ export default function MobileHeader() {
               </strong>
 
               <span>
-                Capture your moment and let AI help
-                select the best shot.
+                Capture your moment and let AI
+                help select the best shot.
               </span>
             </span>
 
@@ -204,45 +253,68 @@ export default function MobileHeader() {
             className={styles.mobileNavigation}
             aria-label="Mobile navigation"
           >
-            {mobileNavigationItems.map((item) => {
-              const Icon = item.icon;
+            {mobileNavigationItems.map(
+              (item) => {
+                const Icon = item.icon;
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={styles.navigationItem}
-                  onClick={closeMenu}
-                >
-                  <span className={styles.navigationIcon}>
-                    <Icon
-                      size={19}
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={
+                      styles.navigationItem
+                    }
+                    onClick={
+                      closeMobileMenu
+                    }
+                  >
+                    <span
+                      className={
+                        styles.navigationIcon
+                      }
+                    >
+                      <Icon
+                        size={19}
+                        strokeWidth={1.9}
+                        aria-hidden="true"
+                      />
+                    </span>
+
+                    <span
+                      className={
+                        styles.navigationContent
+                      }
+                    >
+                      <strong>
+                        {item.label}
+                      </strong>
+
+                      <span>
+                        {item.description}
+                      </span>
+                    </span>
+
+                    <ChevronRight
+                      size={18}
                       strokeWidth={1.9}
+                      className={
+                        styles.navigationArrow
+                      }
                       aria-hidden="true"
                     />
-                  </span>
-
-                  <span className={styles.navigationContent}>
-                    <strong>{item.label}</strong>
-                    <span>{item.description}</span>
-                  </span>
-
-                  <ChevronRight
-                    size={18}
-                    strokeWidth={1.9}
-                    className={styles.navigationArrow}
-                    aria-hidden="true"
-                  />
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              },
+            )}
           </nav>
 
-          <div className={styles.accountActions}>
+          <div
+            className={styles.accountActions}
+          >
             <Link
-              href="/sign-in"
+              href="/auth?mode=sign-in"
               className={styles.signInButton}
-              onClick={closeMenu}
+              onClick={closeMobileMenu}
             >
               <LogIn
                 size={17}
@@ -254,9 +326,11 @@ export default function MobileHeader() {
             </Link>
 
             <Link
-              href="/open-account"
-              className={styles.openAccountButton}
-              onClick={closeMenu}
+              href="/auth?mode=sign-up"
+              className={
+                styles.openAccountButton
+              }
+              onClick={closeMobileMenu}
             >
               <UserPlus
                 size={17}
@@ -268,8 +342,12 @@ export default function MobileHeader() {
             </Link>
           </div>
 
-          <div className={styles.securityNote}>
-            <span className={styles.securityIcon}>
+          <div
+            className={styles.securityNote}
+          >
+            <span
+              className={styles.securityIcon}
+            >
               <ShieldCheck
                 size={18}
                 strokeWidth={2}
@@ -278,8 +356,9 @@ export default function MobileHeader() {
             </span>
 
             <p>
-              Your private smiles stay private unless
-              you explicitly choose to share them.
+              Your private smiles stay private
+              unless you explicitly choose to
+              share them.
             </p>
           </div>
         </div>

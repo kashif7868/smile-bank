@@ -3,13 +3,13 @@ import { create } from "zustand";
 interface UIStore {
   isAuthRequiredOpen: boolean;
   authRequiredPath: string | null;
-
   isMobileMenuOpen: boolean;
 
   openAuthRequired: (path?: string) => void;
   closeAuthRequired: () => void;
   clearAuthRequiredPath: () => void;
 
+  setMobileMenuOpen: (isOpen: boolean) => void;
   openMobileMenu: () => void;
   closeMobileMenu: () => void;
   toggleMobileMenu: () => void;
@@ -43,9 +43,20 @@ export const useUIStore = create<UIStore>((set) => ({
       authRequiredPath: null,
     }),
 
+  setMobileMenuOpen: (isOpen) =>
+    set({
+      isMobileMenuOpen: isOpen,
+      ...(isOpen
+        ? {
+            isAuthRequiredOpen: false,
+          }
+        : {}),
+    }),
+
   openMobileMenu: () =>
     set({
       isMobileMenuOpen: true,
+      isAuthRequiredOpen: false,
     }),
 
   closeMobileMenu: () =>
@@ -56,6 +67,11 @@ export const useUIStore = create<UIStore>((set) => ({
   toggleMobileMenu: () =>
     set((state) => ({
       isMobileMenuOpen: !state.isMobileMenuOpen,
+      ...(state.isMobileMenuOpen
+        ? {}
+        : {
+            isAuthRequiredOpen: false,
+          }),
     })),
 
   resetUI: () =>
